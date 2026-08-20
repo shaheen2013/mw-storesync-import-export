@@ -1,0 +1,1377 @@
+# Copyright (C) 2026 MW
+# This file is distributed under the same license as the MW Order Import Export & Sync for WooCommerce plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: MW Order Import Export & Sync for WooCommerce 1.1.4\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-07-07 12:48+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Language: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: templates/admin/dashboard.php:349
+msgid "Active"
+msgstr ""
+
+#: templates/admin/dashboard.php:176
+msgid "Advanced export"
+msgstr ""
+
+#: templates/admin/dashboard.php:296
+msgid "All"
+msgstr ""
+
+#: templates/admin/dashboard.php:286
+msgid "All ratings"
+msgstr ""
+
+#: templates/admin/dashboard.php:208
+#: templates/admin/dashboard.php:259
+#: templates/admin/dashboard.php:348
+msgid "All statuses"
+msgstr ""
+
+#: templates/admin/dashboard.php:177
+msgid "Apply filters and select exactly the fields you need."
+msgstr ""
+
+#: includes/Exporter/ProductReviewsColumns.php:20
+#: templates/admin/dashboard.php:297
+msgid "Approved"
+msgstr ""
+
+#: templates/admin/dashboard.php:182
+#: templates/admin/dashboard.php:383
+#: templates/admin/dashboard.php:622
+#: templates/admin/dashboard.php:686
+#: templates/admin/dashboard.php:708
+msgid "Back"
+msgstr ""
+
+#: includes/Exporter/ProductColumns.php:21
+msgid "Backorders"
+msgstr ""
+
+#: includes/Exporter/SubscriptionsColumns.php:14
+msgid "Billing Email"
+msgstr ""
+
+#: includes/Exporter/SubscriptionsColumns.php:16
+msgid "Billing First Name"
+msgstr ""
+
+#: includes/Exporter/SubscriptionsColumns.php:17
+msgid "Billing Last Name"
+msgstr ""
+
+#: includes/Exporter/OrderColumns.php:28
+msgid "Billing address 1"
+msgstr ""
+
+#: includes/Exporter/OrderColumns.php:29
+msgid "Billing address 2"
+msgstr ""
+
+#: includes/Exporter/OrderColumns.php:31
+msgid "Billing city"
+msgstr ""
+
+#: includes/Exporter/OrderColumns.php:25
+msgid "Billing company"
+msgstr ""
+
+#: includes/Exporter/OrderColumns.php:33
+msgid "Billing country"
+msgstr ""
+
+#: includes/Exporter/OrderColumns.php:26
+msgid "Billing email"
+msgstr ""
+
+#: includes/Exporter/OrderColumns.php:23
+msgid "Billing first name"
+msgstr ""
+
+#: includes/Exporter/OrderColumns.php:24
+msgid "Billing last name"
+msgstr ""
+
+#: includes/Exporter/OrderColumns.php:27
+msgid "Billing phone"
+msgstr ""
+
+#: includes/Exporter/OrderColumns.php:30
+msgid "Billing postcode"
+msgstr ""
+
+#: includes/Exporter/OrderColumns.php:32
+msgid "Billing state"
+msgstr ""
+
+#: templates/admin/dashboard.php:700
+msgid "CSV file"
+msgstr ""
+
+#: templates/admin/dashboard.php:351
+msgid "Cancelled"
+msgstr ""
+
+#: includes/Exporter/ProductColumns.php:24
+msgid "Categories"
+msgstr ""
+
+#: includes/Exporter/ProductCategoriesColumns.php:11
+msgid "Category ID"
+msgstr ""
+
+#: includes/Admin/Assets.php:52
+msgid "Choose between a fast default export or a more customizable workflow for "
+msgstr ""
+
+#: templates/admin/dashboard.php:163
+msgid "Choose between a fast default export or a more customizable workflow."
+msgstr ""
+
+#: templates/admin/dashboard.php:391
+msgid "Choose export columns"
+msgstr ""
+
+#: templates/admin/dashboard.php:69
+msgid "Choose what you would like to do with your WooCommerce data."
+msgstr ""
+
+#: templates/admin/dashboard.php:413
+msgid "Column"
+msgstr ""
+
+#: templates/admin/dashboard.php:414
+msgid "Column name"
+msgstr ""
+
+#: templates/admin/dashboard.php:671
+msgid "Comma"
+msgstr ""
+
+#: templates/admin/dashboard.php:155
+#: templates/admin/dashboard.php:183
+#: templates/admin/dashboard.php:384
+#: templates/admin/dashboard.php:623
+msgid "Continue"
+msgstr ""
+
+#: templates/admin/dashboard.php:400
+msgid "Core fields"
+msgstr ""
+
+#: templates/admin/dashboard.php:403
+msgid "Core fields selects the built-in export columns for the current export type."
+msgstr ""
+
+#: includes/Exporter/CouponColumns.php:11
+msgid "Coupon ID"
+msgstr ""
+
+#: includes/Exporter/CouponColumns.php:12
+msgid "Coupon code"
+msgstr ""
+
+#: templates/admin/dashboard.php:221
+msgid "Coupon code(s) separated by comma"
+msgstr ""
+
+#: includes/Exporter/OrderColumns.php:47
+msgid "Coupon items"
+msgstr ""
+
+#: includes/Admin/Assets.php:41
+#: templates/admin/dashboard.php:220
+msgid "Coupons"
+msgstr ""
+
+#: includes/Exporter/SubscriptionsColumns.php:21
+msgid "Currency"
+msgstr ""
+
+#: templates/admin/dashboard.php:430
+#: templates/admin/dashboard.php:455
+#: templates/admin/dashboard.php:480
+#: templates/admin/dashboard.php:505
+#: templates/admin/dashboard.php:530
+#: templates/admin/dashboard.php:555
+#: templates/admin/dashboard.php:580
+#: templates/admin/dashboard.php:606
+msgid "Custom Meta"
+msgstr ""
+
+#: templates/admin/dashboard.php:217
+#: templates/admin/dashboard.php:356
+msgid "Customer"
+msgstr ""
+
+#: includes/Exporter/OrderColumns.php:21
+#: includes/Exporter/SubscriptionsColumns.php:13
+msgid "Customer ID"
+msgstr ""
+
+#: includes/Exporter/OrderColumns.php:22
+msgid "Customer email"
+msgstr ""
+
+#: templates/admin/dashboard.php:218
+#: templates/admin/dashboard.php:357
+msgid "Customer email or ID"
+msgstr ""
+
+#: includes/Exporter/OrderColumns.php:44
+msgid "Customer note"
+msgstr ""
+
+#: templates/admin/dashboard.php:225
+#: templates/admin/dashboard.php:305
+#: templates/admin/dashboard.php:361
+msgid "Date from"
+msgstr ""
+
+#: templates/admin/dashboard.php:229
+#: templates/admin/dashboard.php:309
+#: templates/admin/dashboard.php:365
+msgid "Date to"
+msgstr ""
+
+#: templates/admin/dashboard.php:666
+msgid "Delimiter"
+msgstr ""
+
+#: includes/Exporter/CouponColumns.php:27
+#: includes/Exporter/ProductCategoriesColumns.php:14
+#: includes/Exporter/ProductColumns.php:22
+#: includes/Exporter/ProductTagsColumns.php:14
+msgid "Description"
+msgstr ""
+
+#: includes/Exporter/CouponColumns.php:13
+msgid "Discount amount"
+msgstr ""
+
+#: includes/Exporter/CouponColumns.php:14
+msgid "Discount type"
+msgstr ""
+
+#: includes/Exporter/ProductCategoriesColumns.php:17
+msgid "Display Type"
+msgstr ""
+
+#: templates/admin/dashboard.php:687
+msgid "Download CSV"
+msgstr ""
+
+#: templates/admin/dashboard.php:261
+msgid "Draft"
+msgstr ""
+
+#: templates/admin/dashboard.php:422
+#: templates/admin/dashboard.php:447
+#: templates/admin/dashboard.php:472
+#: templates/admin/dashboard.php:497
+#: templates/admin/dashboard.php:522
+#: templates/admin/dashboard.php:547
+#: templates/admin/dashboard.php:572
+#: templates/admin/dashboard.php:598
+msgid "Drag to reorder"
+msgstr ""
+
+#: templates/admin/dashboard.php:437
+#: templates/admin/dashboard.php:462
+#: templates/admin/dashboard.php:487
+#: templates/admin/dashboard.php:512
+#: templates/admin/dashboard.php:537
+#: templates/admin/dashboard.php:562
+#: templates/admin/dashboard.php:587
+#: templates/admin/dashboard.php:613
+msgid "Edit"
+msgstr ""
+
+#: includes/Exporter/CouponColumns.php:24
+msgid "Email restrictions"
+msgstr ""
+
+#: includes/Exporter/SubscriptionsColumns.php:24
+msgid "End Date"
+msgstr ""
+
+#: templates/admin/dashboard.php:645
+msgid "Enter file name (letters, numbers, hyphens only)"
+msgstr ""
+
+#: templates/admin/dashboard.php:204
+msgid "Enter order IDs separated by comma"
+msgstr ""
+
+#: templates/admin/dashboard.php:249
+msgid "Enter product IDs separated by comma"
+msgstr ""
+
+#: templates/admin/dashboard.php:252
+msgid "Enter product SKU"
+msgstr ""
+
+#: includes/Exporter/CouponColumns.php:23
+msgid "Excluded categories"
+msgstr ""
+
+#: includes/Exporter/CouponColumns.php:21
+msgid "Excluded products"
+msgstr ""
+
+#: templates/admin/dashboard.php:352
+msgid "Expired"
+msgstr ""
+
+#: includes/Exporter/CouponColumns.php:15
+msgid "Expiry date"
+msgstr ""
+
+#: includes/Admin/Assets.php:49
+msgid "Export"
+msgstr ""
+
+#: templates/admin/dashboard.php:45
+msgid "Export & Import Orders"
+msgstr ""
+
+#: templates/admin/dashboard.php:10
+msgid "Export WooCommerce orders to CSV or import orders from a mapped CSV file."
+msgstr ""
+
+#: templates/admin/dashboard.php:107
+msgid "Export categories to CSV"
+msgstr ""
+
+#: templates/admin/dashboard.php:85
+msgid "Export coupons"
+msgstr ""
+
+#: templates/admin/dashboard.php:86
+msgid "Export coupons to CSV"
+msgstr ""
+
+#: templates/admin/dashboard.php:172
+msgid "Export default fields with one click."
+msgstr ""
+
+#: templates/admin/dashboard.php:641
+msgid "Export file name"
+msgstr ""
+
+#: templates/admin/dashboard.php:655
+msgid "Export in batches of"
+msgstr ""
+
+#: templates/admin/dashboard.php:78
+msgid "Export orders"
+msgstr ""
+
+#: templates/admin/dashboard.php:79
+msgid "Export orders to CSV"
+msgstr ""
+
+#: templates/admin/dashboard.php:106
+msgid "Export product categories"
+msgstr ""
+
+#: templates/admin/dashboard.php:99
+msgid "Export product reviews"
+msgstr ""
+
+#: templates/admin/dashboard.php:113
+msgid "Export product tags"
+msgstr ""
+
+#: templates/admin/dashboard.php:92
+msgid "Export products"
+msgstr ""
+
+#: templates/admin/dashboard.php:93
+msgid "Export products to CSV"
+msgstr ""
+
+#: templates/admin/dashboard.php:100
+msgid "Export reviews as CSV"
+msgstr ""
+
+#: templates/admin/dashboard.php:120
+msgid "Export subscriptions"
+msgstr ""
+
+#: templates/admin/dashboard.php:121
+msgid "Export subscriptions to CSV"
+msgstr ""
+
+#: templates/admin/dashboard.php:114
+msgid "Export tags to CSV"
+msgstr ""
+
+#: templates/admin/dashboard.php:127
+msgid "Export users"
+msgstr ""
+
+#: templates/admin/dashboard.php:128
+msgid "Export users/customers to CSV"
+msgstr ""
+
+#: templates/admin/dashboard.php:323
+msgid "Export your product categories to a CSV file."
+msgstr ""
+
+#: templates/admin/dashboard.php:335
+msgid "Export your product tags to a CSV file."
+msgstr ""
+
+#: includes/Importer/ProductReviewsProvisioner.php:87
+msgid "Failed to save review."
+msgstr ""
+
+#: templates/admin/dashboard.php:282
+msgid "Filter by product ID or SKU"
+msgstr ""
+
+#: templates/admin/dashboard.php:190
+msgid "Filter your export"
+msgstr ""
+
+#: templates/admin/dashboard.php:630
+msgid "Final export options"
+msgstr ""
+
+#: includes/Admin/Dashboard.php:79
+#: includes/Admin/Dashboard.php:211
+msgid "Forbidden."
+msgstr ""
+
+#: includes/Exporter/CouponColumns.php:19
+msgid "Free shipping"
+msgstr ""
+
+#: templates/admin/dashboard.php:12
+msgid "HPOS Ready"
+msgstr ""
+
+#: includes/Exporter/UserColumns.php:11
+msgid "ID"
+msgstr ""
+
+#: includes/Exporter/ProductColumns.php:26
+msgid "Images"
+msgstr ""
+
+#: includes/Admin/Assets.php:50
+msgid "Import"
+msgstr ""
+
+#: includes/Core/Plugin.php:32
+msgid "Import / Export"
+msgstr ""
+
+#: templates/admin/dashboard.php:709
+msgid "Import CSV"
+msgstr ""
+
+#: templates/admin/dashboard.php:695
+msgid "Import Orders"
+msgstr ""
+
+#: templates/admin/dashboard.php:24
+msgid "Import complete. Success: %1$d, Failed: %2$d."
+msgstr ""
+
+#: templates/admin/dashboard.php:134
+msgid "Import orders"
+msgstr ""
+
+#: templates/admin/dashboard.php:135
+msgid "Import orders from CSV"
+msgstr ""
+
+#: templates/admin/dashboard.php:141
+msgid "Import products"
+msgstr ""
+
+#: templates/admin/dashboard.php:142
+msgid "Import products from CSV"
+msgstr ""
+
+#: templates/admin/dashboard.php:149
+msgid "Import reviews from CSV"
+msgstr ""
+
+#: includes/Exporter/CouponColumns.php:22
+msgid "Included categories"
+msgstr ""
+
+#: includes/Exporter/CouponColumns.php:20
+msgid "Included products"
+msgstr ""
+
+#: includes/Exporter/CouponColumns.php:18
+msgid "Individual use only"
+msgstr ""
+
+#: includes/Exporter/OrderColumns.php:45
+msgid "Line items"
+msgstr ""
+
+#: includes/Admin/Dashboard.php:39
+msgid "MW Order I/E"
+msgstr ""
+
+#: includes/Admin/Dashboard.php:38
+msgid "MW Order Import Export"
+msgstr ""
+
+#: templates/admin/dashboard.php:9
+msgid "MW Order Import Export & Sync"
+msgstr ""
+
+#: includes/Core/Plugin.php:43
+msgid "MW Order Import Export & Sync for WooCommerce requires WooCommerce to be active."
+msgstr ""
+
+#: includes/Exporter/ProductColumns.php:18
+msgid "Manage stock"
+msgstr ""
+
+#: templates/admin/dashboard.php:46
+msgid "Manage your WooCommerce data with our guided workflow."
+msgstr ""
+
+#: includes/Exporter/CouponColumns.php:26
+msgid "Maximum spend"
+msgstr ""
+
+#: includes/Exporter/CouponColumns.php:25
+msgid "Minimum spend"
+msgstr ""
+
+#: includes/Importer/ProductReviewsProvisioner.php:54
+msgid "Missing product ID or SKU."
+msgstr ""
+
+#: includes/Exporter/ProductCategoriesColumns.php:12
+#: includes/Exporter/ProductColumns.php:13
+#: includes/Exporter/ProductTagsColumns.php:12
+msgid "Name"
+msgstr ""
+
+#: includes/Exporter/SubscriptionsColumns.php:23
+msgid "Next Payment Date"
+msgstr ""
+
+#: templates/admin/dashboard.php:350
+msgid "On Hold"
+msgstr ""
+
+#: includes/Admin/Dashboard.php:242
+msgid "Only CSV files are supported in this version."
+msgstr ""
+
+#: includes/Exporter/OrderColumns.php:11
+msgid "Order ID"
+msgstr ""
+
+#: templates/admin/dashboard.php:203
+msgid "Order IDs"
+msgstr ""
+
+#: includes/Exporter/OrderColumns.php:17
+msgid "Order currency"
+msgstr ""
+
+#: includes/Exporter/OrderColumns.php:13
+msgid "Order date"
+msgstr ""
+
+#: includes/Exporter/OrderColumns.php:48
+msgid "Order notes"
+msgstr ""
+
+#: includes/Exporter/OrderColumns.php:12
+msgid "Order number"
+msgstr ""
+
+#: templates/admin/dashboard.php:206
+msgid "Order status"
+msgstr ""
+
+#: includes/Exporter/OrderColumns.php:16
+msgid "Order total"
+msgstr ""
+
+#: includes/Admin/Assets.php:40
+msgid "Orders"
+msgstr ""
+
+#: templates/admin/dashboard.php:675
+msgid "Other"
+msgstr ""
+
+#: includes/Exporter/OrderColumns.php:14
+msgid "Paid date"
+msgstr ""
+
+#: includes/Exporter/ProductCategoriesColumns.php:15
+msgid "Parent Category ID"
+msgstr ""
+
+#: includes/Exporter/ProductCategoriesColumns.php:16
+msgid "Parent Category Slug"
+msgstr ""
+
+#: includes/Exporter/SubscriptionsColumns.php:15
+msgid "Parent Order ID"
+msgstr ""
+
+#: includes/Exporter/SubscriptionsColumns.php:25
+msgid "Payment Method"
+msgstr ""
+
+#: includes/Exporter/OrderColumns.php:18
+msgid "Payment method"
+msgstr ""
+
+#: includes/Exporter/OrderColumns.php:19
+msgid "Payment method title"
+msgstr ""
+
+#: templates/admin/dashboard.php:298
+msgid "Pending"
+msgstr ""
+
+#: templates/admin/dashboard.php:353
+msgid "Pending Cancel"
+msgstr ""
+
+#: templates/admin/dashboard.php:262
+msgid "Pending review"
+msgstr ""
+
+#: templates/admin/dashboard.php:674
+msgid "Pipe"
+msgstr ""
+
+#: includes/Admin/Dashboard.php:217
+msgid "Please choose a valid uploaded CSV file."
+msgstr ""
+
+#: templates/admin/dashboard.php:263
+msgid "Private"
+msgstr ""
+
+#: templates/admin/dashboard.php:214
+msgid "Product"
+msgstr ""
+
+#: includes/Admin/Assets.php:44
+msgid "Product Categories"
+msgstr ""
+
+#: includes/Exporter/ProductColumns.php:11
+#: includes/Exporter/ProductReviewsColumns.php:12
+msgid "Product ID"
+msgstr ""
+
+#: templates/admin/dashboard.php:215
+#: templates/admin/dashboard.php:281
+msgid "Product ID or SKU"
+msgstr ""
+
+#: templates/admin/dashboard.php:248
+msgid "Product IDs"
+msgstr ""
+
+#: includes/Exporter/SubscriptionsColumns.php:18
+msgid "Product Name"
+msgstr ""
+
+#: includes/Admin/Assets.php:43
+msgid "Product Reviews"
+msgstr ""
+
+#: includes/Exporter/ProductReviewsColumns.php:13
+#: includes/Exporter/SubscriptionsColumns.php:19
+#: templates/admin/dashboard.php:251
+msgid "Product SKU"
+msgstr ""
+
+#: includes/Admin/Assets.php:45
+msgid "Product Tags"
+msgstr ""
+
+#: includes/Exporter/ProductReviewsColumns.php:14
+msgid "Product Title"
+msgstr ""
+
+#: includes/Importer/ProductReviewsProvisioner.php:59
+msgid "Product not found."
+msgstr ""
+
+#: includes/Exporter/ProductColumns.php:14
+#: templates/admin/dashboard.php:254
+msgid "Product type"
+msgstr ""
+
+#: includes/Admin/Assets.php:42
+msgid "Products"
+msgstr ""
+
+#: templates/admin/dashboard.php:260
+msgid "Published"
+msgstr ""
+
+#: templates/admin/dashboard.php:171
+msgid "Quick export"
+msgstr ""
+
+#: includes/Exporter/ProductReviewsColumns.php:21
+msgid "Rating"
+msgstr ""
+
+#: templates/admin/dashboard.php:284
+msgid "Rating (Stars)"
+msgstr ""
+
+#: includes/Exporter/ProductColumns.php:16
+msgid "Regular price"
+msgstr ""
+
+#: includes/Exporter/ProductReviewsColumns.php:23
+msgid "Reply To (Parent ID)"
+msgstr ""
+
+#: templates/admin/dashboard.php:148
+msgid "Review"
+msgstr ""
+
+#: includes/Exporter/ProductReviewsColumns.php:19
+msgid "Review Content"
+msgstr ""
+
+#: includes/Exporter/ProductReviewsColumns.php:18
+msgid "Review Date"
+msgstr ""
+
+#: includes/Exporter/ProductReviewsColumns.php:11
+msgid "Review ID"
+msgstr ""
+
+#: includes/Exporter/ProductReviewsColumns.php:16
+msgid "Reviewer Email"
+msgstr ""
+
+#: includes/Exporter/ProductReviewsColumns.php:17
+msgid "Reviewer IP"
+msgstr ""
+
+#: includes/Exporter/ProductReviewsColumns.php:15
+msgid "Reviewer Name"
+msgstr ""
+
+#: includes/Admin/Assets.php:48
+msgid "Reviews"
+msgstr ""
+
+#: templates/admin/dashboard.php:378
+msgid "Roles"
+msgstr ""
+
+#: templates/admin/dashboard.php:379
+msgid "Roles separated by comma (e.g. customer, subscriber)"
+msgstr ""
+
+#: includes/Importer/OrderProvisioner.php:28
+#: includes/Importer/ProductProvisioner.php:28
+#: includes/Importer/ProductReviewsProvisioner.php:28
+msgid "Row %1$d failed: %2$s"
+msgstr ""
+
+#: includes/Importer/OrderProvisioner.php:38
+msgid "Row %1$d imported as order #%2$d."
+msgstr ""
+
+#: includes/Importer/ProductProvisioner.php:38
+msgid "Row %1$d imported as product #%2$d."
+msgstr ""
+
+#: includes/Importer/ProductReviewsProvisioner.php:38
+msgid "Row %1$d imported as review #%2$d."
+msgstr ""
+
+#: includes/Exporter/ProductColumns.php:12
+msgid "SKU"
+msgstr ""
+
+#: includes/Exporter/ProductColumns.php:17
+msgid "Sale price"
+msgstr ""
+
+#: templates/admin/dashboard.php:266
+msgid "Search"
+msgstr ""
+
+#: templates/admin/dashboard.php:267
+msgid "Search product name or description"
+msgstr ""
+
+#: templates/admin/dashboard.php:399
+msgid "Select all fields"
+msgstr ""
+
+#: templates/admin/dashboard.php:68
+msgid "Select an action"
+msgstr ""
+
+#: templates/admin/dashboard.php:392
+msgid "Select and reorder the columns to include in your CSV export."
+msgstr ""
+
+#: templates/admin/dashboard.php:162
+msgid "Select export method"
+msgstr ""
+
+#: includes/Admin/Assets.php:51
+msgid "Select export method — "
+msgstr ""
+
+#: templates/admin/dashboard.php:672
+msgid "Semicolon"
+msgstr ""
+
+#: templates/admin/dashboard.php:679
+msgid "Separator for differentiating the columns in the CSV file. Assumes comma by default."
+msgstr ""
+
+#: includes/Exporter/OrderColumns.php:38
+msgid "Shipping address 1"
+msgstr ""
+
+#: includes/Exporter/OrderColumns.php:39
+msgid "Shipping address 2"
+msgstr ""
+
+#: includes/Exporter/OrderColumns.php:41
+msgid "Shipping city"
+msgstr ""
+
+#: includes/Exporter/OrderColumns.php:36
+msgid "Shipping company"
+msgstr ""
+
+#: includes/Exporter/OrderColumns.php:43
+msgid "Shipping country"
+msgstr ""
+
+#: includes/Exporter/OrderColumns.php:34
+msgid "Shipping first name"
+msgstr ""
+
+#: includes/Exporter/OrderColumns.php:46
+msgid "Shipping items"
+msgstr ""
+
+#: includes/Exporter/OrderColumns.php:35
+msgid "Shipping last name"
+msgstr ""
+
+#: includes/Exporter/OrderColumns.php:37
+msgid "Shipping phone"
+msgstr ""
+
+#: includes/Exporter/OrderColumns.php:40
+msgid "Shipping postcode"
+msgstr ""
+
+#: includes/Exporter/OrderColumns.php:42
+msgid "Shipping state"
+msgstr ""
+
+#: includes/Exporter/ProductColumns.php:23
+msgid "Short description"
+msgstr ""
+
+#: templates/admin/dashboard.php:319
+msgid "Skip first n categories"
+msgstr ""
+
+#: templates/admin/dashboard.php:239
+msgid "Skip first n coupons"
+msgstr ""
+
+#: templates/admin/dashboard.php:200
+msgid "Skip first n orders"
+msgstr ""
+
+#: templates/admin/dashboard.php:278
+msgid "Skip first n reviews"
+msgstr ""
+
+#: templates/admin/dashboard.php:343
+msgid "Skip first n subscriptions"
+msgstr ""
+
+#: templates/admin/dashboard.php:331
+msgid "Skip first n tags"
+msgstr ""
+
+#: templates/admin/dashboard.php:375
+msgid "Skip first n users"
+msgstr ""
+
+#: includes/Exporter/ProductCategoriesColumns.php:13
+#: includes/Exporter/ProductTagsColumns.php:13
+msgid "Slug"
+msgstr ""
+
+#: templates/admin/dashboard.php:299
+msgid "Spam"
+msgstr ""
+
+#: templates/admin/dashboard.php:648
+msgid "Specify a filename for the exported file. If left blank, the system generates the name automatically."
+msgstr ""
+
+#: templates/admin/dashboard.php:287
+msgid "Star"
+msgstr ""
+
+#: templates/admin/dashboard.php:288
+#: templates/admin/dashboard.php:289
+#: templates/admin/dashboard.php:290
+#: templates/admin/dashboard.php:291
+msgid "Stars"
+msgstr ""
+
+#: includes/Exporter/SubscriptionsColumns.php:22
+msgid "Start Date"
+msgstr ""
+
+#: includes/Exporter/OrderColumns.php:15
+#: includes/Exporter/ProductColumns.php:15
+#: includes/Exporter/SubscriptionsColumns.php:12
+#: templates/admin/dashboard.php:257
+#: templates/admin/dashboard.php:294
+#: templates/admin/dashboard.php:346
+msgid "Status"
+msgstr ""
+
+#: templates/admin/dashboard.php:57
+msgid "Step 1"
+msgstr ""
+
+#: templates/admin/dashboard.php:58
+msgid "Step 2"
+msgstr ""
+
+#: templates/admin/dashboard.php:59
+msgid "Step 3"
+msgstr ""
+
+#: templates/admin/dashboard.php:60
+msgid "Step 4"
+msgstr ""
+
+#: templates/admin/dashboard.php:61
+msgid "Step 5"
+msgstr ""
+
+#: includes/Exporter/ProductColumns.php:19
+msgid "Stock quantity"
+msgstr ""
+
+#: includes/Exporter/ProductColumns.php:20
+msgid "Stock status"
+msgstr ""
+
+#: includes/Exporter/SubscriptionsColumns.php:11
+msgid "Subscription ID"
+msgstr ""
+
+#: includes/Admin/Assets.php:46
+msgid "Subscriptions"
+msgstr ""
+
+#: templates/admin/dashboard.php:673
+msgid "Tab"
+msgstr ""
+
+#: includes/Exporter/ProductTagsColumns.php:11
+msgid "Tag ID"
+msgstr ""
+
+#: includes/Exporter/ProductColumns.php:25
+msgid "Tags"
+msgstr ""
+
+#: templates/admin/dashboard.php:659
+msgid "The number of records that the server will process for every iteration within the configured timeout interval. If the export fails due to timeout you can lower this number accordingly and try again. Defaulted to 30 records."
+msgstr ""
+
+#: includes/Admin/Dashboard.php:223
+msgid "The upload failed. Please try again."
+msgstr ""
+
+#: includes/Exporter/ProductCategoriesColumns.php:18
+msgid "Thumbnail Image URL"
+msgstr ""
+
+#: includes/Exporter/SubscriptionsColumns.php:20
+msgid "Total Amount"
+msgstr ""
+
+#: templates/admin/dashboard.php:316
+msgid "Total number of categories"
+msgstr ""
+
+#: templates/admin/dashboard.php:236
+msgid "Total number of coupons"
+msgstr ""
+
+#: templates/admin/dashboard.php:197
+msgid "Total number of orders"
+msgstr ""
+
+#: templates/admin/dashboard.php:275
+msgid "Total number of reviews"
+msgstr ""
+
+#: templates/admin/dashboard.php:340
+msgid "Total number of subscriptions"
+msgstr ""
+
+#: templates/admin/dashboard.php:328
+msgid "Total number of tags"
+msgstr ""
+
+#: templates/admin/dashboard.php:372
+msgid "Total number of users"
+msgstr ""
+
+#: includes/Exporter/OrderColumns.php:20
+msgid "Transaction ID"
+msgstr ""
+
+#: templates/admin/dashboard.php:300
+msgid "Trash"
+msgstr ""
+
+#: includes/Importer/ProductProvisioner.php:68
+msgid "Unable to create or retrieve the product."
+msgstr ""
+
+#: includes/Importer/ProductProvisioner.php:98
+msgid "Unable to create product post."
+msgstr ""
+
+#: includes/Importer/ProductProvisioner.php:82
+msgid "Untitled product"
+msgstr ""
+
+#: includes/Exporter/CouponColumns.php:16
+msgid "Usage count"
+msgstr ""
+
+#: includes/Exporter/CouponColumns.php:17
+msgid "Usage limit"
+msgstr ""
+
+#: templates/admin/dashboard.php:243
+msgid "Use coupon filters to export only the coupon records you need."
+msgstr ""
+
+#: templates/admin/dashboard.php:191
+msgid "Use filters to limit the exported items to only the ones you want."
+msgstr ""
+
+#: templates/admin/dashboard.php:270
+msgid "Use product filters to export only matching products."
+msgstr ""
+
+#: templates/admin/dashboard.php:704
+msgid "Use the exported CSV headers for best results. Existing orders are updated when order_id matches."
+msgstr ""
+
+#: includes/Admin/Assets.php:47
+msgid "Users"
+msgstr ""
+
+#: includes/Exporter/ProductReviewsColumns.php:22
+msgid "Verified Buyer"
+msgstr ""
+
+#: includes/Exporter/OrderColumns.php:53
+msgid "WC attribution UTM source"
+msgstr ""
+
+#: includes/Exporter/OrderColumns.php:54
+msgid "WC attribution referrer"
+msgstr ""
+
+#: includes/Exporter/OrderColumns.php:52
+msgid "WC attribution source type"
+msgstr ""
+
+#: includes/Exporter/ProductCategoriesFileWriter.php:11
+msgid "WooCommerce is required for category export."
+msgstr ""
+
+#: includes/Exporter/CouponFileWriter.php:11
+msgid "WooCommerce is required for coupon export."
+msgstr ""
+
+#: includes/Exporter/FileWriter.php:11
+msgid "WooCommerce is required for order export."
+msgstr ""
+
+#: includes/Importer/OrderProvisioner.php:11
+msgid "WooCommerce is required for order import."
+msgstr ""
+
+#: includes/Exporter/ProductFileWriter.php:11
+msgid "WooCommerce is required for product export."
+msgstr ""
+
+#: includes/Importer/ProductProvisioner.php:11
+msgid "WooCommerce is required for product import."
+msgstr ""
+
+#: includes/Exporter/ProductReviewsFileWriter.php:11
+msgid "WooCommerce is required for review export."
+msgstr ""
+
+#: includes/Importer/ProductReviewsProvisioner.php:11
+msgid "WooCommerce is required for review import."
+msgstr ""
+
+#: includes/Exporter/SubscriptionsFileWriter.php:11
+msgid "WooCommerce is required for subscription export."
+msgstr ""
+
+#: includes/Exporter/ProductTagsFileWriter.php:11
+msgid "WooCommerce is required for tag export."
+msgstr ""
+
+#: templates/admin/dashboard.php:631
+msgid "You can save the template file for future exports or proceed with the export."
+msgstr ""
+
+#: includes/Admin/Dashboard.php:50
+msgid "You do not have permission to access this page."
+msgstr ""
+
+#: includes/Exporter/UserColumns.php:27
+msgid "admin_color"
+msgstr ""
+
+#: includes/Exporter/UserColumns.php:61
+msgid "aov"
+msgstr ""
+
+#: includes/Exporter/UserColumns.php:43
+msgid "billing_address_1"
+msgstr ""
+
+#: includes/Exporter/UserColumns.php:44
+msgid "billing_address_2"
+msgstr ""
+
+#: includes/Exporter/UserColumns.php:46
+msgid "billing_city"
+msgstr ""
+
+#: includes/Exporter/UserColumns.php:40
+msgid "billing_company"
+msgstr ""
+
+#: includes/Exporter/UserColumns.php:48
+msgid "billing_country"
+msgstr ""
+
+#: includes/Exporter/UserColumns.php:41
+msgid "billing_email"
+msgstr ""
+
+#: includes/Exporter/UserColumns.php:38
+msgid "billing_first_name"
+msgstr ""
+
+#: includes/Exporter/UserColumns.php:39
+msgid "billing_last_name"
+msgstr ""
+
+#: includes/Exporter/UserColumns.php:42
+msgid "billing_phone"
+msgstr ""
+
+#: includes/Exporter/UserColumns.php:45
+msgid "billing_postcode"
+msgstr ""
+
+#: includes/Exporter/UserColumns.php:47
+msgid "billing_state"
+msgstr ""
+
+#: includes/Exporter/UserColumns.php:12
+msgid "customer_id"
+msgstr ""
+
+#: includes/Exporter/UserColumns.php:24
+msgid "description"
+msgstr ""
+
+#: includes/Exporter/UserColumns.php:32
+msgid "dismissed_wp_pointers"
+msgstr ""
+
+#: includes/Exporter/UserColumns.php:18
+msgid "display_name"
+msgstr ""
+
+#: includes/Exporter/UserColumns.php:19
+msgid "first_name"
+msgstr ""
+
+#: includes/Exporter/UserColumns.php:36
+msgid "is_guest_user"
+msgstr ""
+
+#: includes/Exporter/UserColumns.php:20
+msgid "last_name"
+msgstr ""
+
+#: includes/Exporter/UserColumns.php:35
+msgid "last_update"
+msgstr ""
+
+#: includes/Exporter/UserColumns.php:30
+msgid "locale"
+msgstr ""
+
+#: includes/Exporter/UserColumns.php:23
+msgid "nickname"
+msgstr ""
+
+#: includes/Exporter/UserColumns.php:37
+msgid "orders"
+msgstr ""
+
+#: includes/Exporter/UserColumns.php:25
+msgid "rich_editing"
+msgstr ""
+
+#: includes/Exporter/UserColumns.php:22
+msgid "roles"
+msgstr ""
+
+#: includes/Exporter/UserColumns.php:34
+msgid "session_tokens"
+msgstr ""
+
+#: includes/Exporter/UserColumns.php:53
+msgid "shipping_address_1"
+msgstr ""
+
+#: includes/Exporter/UserColumns.php:54
+msgid "shipping_address_2"
+msgstr ""
+
+#: includes/Exporter/UserColumns.php:56
+msgid "shipping_city"
+msgstr ""
+
+#: includes/Exporter/UserColumns.php:51
+msgid "shipping_company"
+msgstr ""
+
+#: includes/Exporter/UserColumns.php:58
+msgid "shipping_country"
+msgstr ""
+
+#: includes/Exporter/UserColumns.php:49
+msgid "shipping_first_name"
+msgstr ""
+
+#: includes/Exporter/UserColumns.php:50
+msgid "shipping_last_name"
+msgstr ""
+
+#: includes/Exporter/UserColumns.php:52
+msgid "shipping_phone"
+msgstr ""
+
+#: includes/Exporter/UserColumns.php:55
+msgid "shipping_postcode"
+msgstr ""
+
+#: includes/Exporter/UserColumns.php:57
+msgid "shipping_state"
+msgstr ""
+
+#: includes/Exporter/UserColumns.php:29
+msgid "show_admin_bar_front"
+msgstr ""
+
+#: includes/Exporter/UserColumns.php:33
+msgid "show_welcome_panel"
+msgstr ""
+
+#: templates/admin/dashboard.php:255
+msgid "simple, variable, grouped, external"
+msgstr ""
+
+#: includes/Exporter/UserColumns.php:26
+msgid "syntax_highlighting"
+msgstr ""
+
+#: includes/Exporter/UserColumns.php:60
+msgid "total_spent"
+msgstr ""
+
+#: includes/Exporter/UserColumns.php:28
+msgid "use_ssl"
+msgstr ""
+
+#: includes/Exporter/UserColumns.php:15
+msgid "user_email"
+msgstr ""
+
+#: includes/Exporter/UserColumns.php:13
+msgid "user_login"
+msgstr ""
+
+#: includes/Exporter/UserColumns.php:14
+msgid "user_nicename"
+msgstr ""
+
+#: includes/Exporter/UserColumns.php:17
+msgid "user_registered"
+msgstr ""
+
+#: includes/Exporter/UserColumns.php:21
+msgid "user_status"
+msgstr ""
+
+#: includes/Exporter/UserColumns.php:16
+msgid "user_url"
+msgstr ""
+
+#: includes/Exporter/UserColumns.php:59
+msgid "wc_last_active"
+msgstr ""
+
+#: includes/Exporter/UserColumns.php:31
+msgid "wp_user_level"
+msgstr ""
+
