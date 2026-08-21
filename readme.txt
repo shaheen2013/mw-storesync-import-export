@@ -1,8 +1,8 @@
 === StoreSync Import Export for WooCommerce ===
 Contributors: mediusware
-Tags: woocommerce, orders, import, export, csv, hpos
+Tags: woocommerce, orders, import, export, csv
 Requires at least: 6.0
-Tested up to: 6.9
+Tested up to: 7.1
 Requires PHP: 7.4
 Stable tag: 1.1.4
 License: GPLv2 or later

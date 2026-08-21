@@ -36,6 +36,7 @@ class CouponFileWriter {
 			$headers[] = isset( $custom_names[ $column ] ) && '' !== trim( $custom_names[ $column ] ) ? $custom_names[ $column ] : $column;
 		}
 
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fopen -- Direct output stream required for CSV download header and rows.
 		$output = fopen( 'php://output', 'w' );
 		fputcsv( $output, CsvValueSanitizer::sanitize_row( $headers ), $delimiter );
 
@@ -59,6 +60,7 @@ class CouponFileWriter {
 			fputcsv( $output, CsvValueSanitizer::sanitize_row( $row ), $delimiter );
 		}
 
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fclose -- Direct output stream close.
 		fclose( $output );
 		exit;
 	}

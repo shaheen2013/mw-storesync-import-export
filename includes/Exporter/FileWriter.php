@@ -44,6 +44,7 @@ class FileWriter
 				: ($available_columns[$column_key] ?? $column_key);
 		}
 
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fopen -- Direct output stream required for CSV download.
 		$output         = fopen('php://output', 'w');
 		$headers_written = false;
 
@@ -67,6 +68,7 @@ class FileWriter
 			$offset   += $batch_exported;
 		}
 
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fclose -- Direct output stream close.
 		fclose($output);
 		exit;
 	}

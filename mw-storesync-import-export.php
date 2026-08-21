@@ -62,6 +62,7 @@ function mw_wie_check_woocommerce_dependency() {
 			deactivate_plugins( plugin_basename( MW_WIE_PLUGIN_FILE ) );
 			
 			// Remove the "Plugin activated" success message
+			// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading core activation query arg to suppress standard activation notice on missing dependency.
 			if ( isset( $_GET['activate'] ) ) {
 				unset( $_GET['activate'] );
 			}
@@ -96,8 +97,6 @@ function mw_wie_boot_plugin() {
 		// user feedback; we simply do not boot any functionality.
 		return;
 	}
-
-	load_plugin_textdomain( MW_WIE_TEXT_DOMAIN, false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 
 	$plugin = new \MW\WooImportExport\Core\Plugin();
 	$plugin->run();

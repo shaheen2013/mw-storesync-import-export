@@ -52,22 +52,42 @@ class OrderProvisioner
 			if (is_array($response) && isset($response['id'])) {
 				if (! empty($response['skipped'])) {
 					++$result['skipped'];
-					$result['logs'][] = sprintf(__('Row %1$d skipped existing order #%2$d.', 'mw-storesync-import-export'), $row_number, $response['id']);
+					$result['logs'][] = sprintf(
+						/* translators: 1: row number, 2: order ID */
+						__('Row %1$d skipped existing order #%2$d.', 'mw-storesync-import-export'),
+						$row_number,
+						$response['id']
+					);
 					continue;
 				}
 
 				++$result['success'];
 				if (! empty($response['is_new'])) {
-					$result['logs'][] = sprintf(__('Row %1$d imported as order #%2$d.', 'mw-storesync-import-export'), $row_number, $response['id']);
+					$result['logs'][] = sprintf(
+						/* translators: 1: row number, 2: order ID */
+						__('Row %1$d imported as order #%2$d.', 'mw-storesync-import-export'),
+						$row_number,
+						$response['id']
+					);
 				} else {
-					$result['logs'][] = sprintf(__('Row %1$d updated order #%2$d.', 'mw-storesync-import-export'), $row_number, $response['id']);
+					$result['logs'][] = sprintf(
+						/* translators: 1: row number, 2: order ID */
+						__('Row %1$d updated order #%2$d.', 'mw-storesync-import-export'),
+						$row_number,
+						$response['id']
+					);
 				}
 				continue;
 			}
 
 			// Fallback: older behavior returned an ID directly.
 			++$result['success'];
-			$result['logs'][] = sprintf(__('Row %1$d imported as order #%2$d.', 'mw-storesync-import-export'), $row_number, absint($response));
+			$result['logs'][] = sprintf(
+				/* translators: 1: row number, 2: order ID */
+				__('Row %1$d imported as order #%2$d.', 'mw-storesync-import-export'),
+				$row_number,
+				absint($response)
+			);
 		}
 
 		if ($result['failed'] > 0) {
@@ -89,23 +109,39 @@ class OrderProvisioner
 		$customer_id   = isset($row['customer_id']) ? trim($row['customer_id']) : '';
 
 		if ('' === $billing_email && '' === $customer_id) {
-			$errors[] = sprintf( /* translators: 1: row number */__('Row %1$d: missing customer identifier (billing_email or customer_id required).', 'mw-storesync-import-export'), $row_number);
+			$errors[] = sprintf(
+				/* translators: 1: row number */
+				__('Row %1$d: missing customer identifier (billing_email or customer_id required).', 'mw-storesync-import-export'),
+				$row_number
+			);
 		}
 
 		// If order_total is provided, it must be numeric.
 		if (isset($row['order_total']) && '' !== trim((string) $row['order_total']) && ! is_numeric($row['order_total'])) {
-			$errors[] = sprintf(__('Row %1$d: order_total must be numeric.', 'mw-storesync-import-export'), $row_number);
+			$errors[] = sprintf(
+				/* translators: 1: row number */
+				__('Row %1$d: order_total must be numeric.', 'mw-storesync-import-export'),
+				$row_number
+			);
 		}
 
 		if (! empty($row['status']) && ! $this->is_valid_order_status($row['status'])) {
-			$errors[] = sprintf(__('Row %1$d: invalid order status.', 'mw-storesync-import-export'), $row_number);
+			$errors[] = sprintf(
+				/* translators: 1: row number */
+				__('Row %1$d: invalid order status.', 'mw-storesync-import-export'),
+				$row_number
+			);
 		}
 
 		// Validate line_items JSON shape if present.
 		if (! empty($row['line_items'])) {
 			$line_items = json_decode($row['line_items'], true);
 			if (! is_array($line_items)) {
-				$errors[] = sprintf(__('Row %1$d: line_items must be a JSON array.', 'mw-storesync-import-export'), $row_number);
+				$errors[] = sprintf(
+					/* translators: 1: row number */
+					__('Row %1$d: line_items must be a JSON array.', 'mw-storesync-import-export'),
+					$row_number
+				);
 			} else {
 				$errors = array_merge($errors, $this->validate_line_items($line_items, $row_number));
 			}
@@ -178,6 +214,7 @@ class OrderProvisioner
 			}
 		}
 
+		// phpcs:disable WordPress.DB.SlowDBQuery.slow_db_query_meta_key, WordPress.DB.SlowDBQuery.slow_db_query_meta_value -- Lookup existing orders by transaction ID or custom order number metadata.
 		if (! empty($row['transaction_id'])) {
 			$txn = sanitize_text_field($row['transaction_id']);
 			$orders = wc_get_orders(array(
@@ -208,6 +245,7 @@ class OrderProvisioner
 				return $orders[0];
 			}
 		}
+		// phpcs:enable WordPress.DB.SlowDBQuery.slow_db_query_meta_key, WordPress.DB.SlowDBQuery.slow_db_query_meta_value
 
 		// Match by billing email + order total as a fallback (useful when exported CSV lacks IDs).
 		$billing_email = ! empty($row['billing_email']) ? sanitize_email($row['billing_email']) : '';
@@ -362,11 +400,17 @@ class OrderProvisioner
 		foreach ($line_items as $index => $item) {
 			$item_number = $index + 1;
 			$prefix      = $row_number
+				/* translators: 1: row number, 2: line item number */
 				? sprintf(__('Row %1$d, line item %2$d:', 'mw-storesync-import-export'), $row_number, $item_number)
+				/* translators: 1: line item number */
 				: sprintf(__('Line item %1$d:', 'mw-storesync-import-export'), $item_number);
 
 			if (! is_array($item)) {
-				$errors[] = sprintf(__('%1$s item must be an object.', 'mw-storesync-import-export'), $prefix);
+				$errors[] = sprintf(
+					/* translators: 1: line item prefix */
+					__('%1$s item must be an object.', 'mw-storesync-import-export'),
+					$prefix
+				);
 				continue;
 			}
 
@@ -375,16 +419,29 @@ class OrderProvisioner
 			$quantity   = isset($item['quantity']) ? $item['quantity'] : 1;
 
 			if (! $product_id && '' === $sku) {
-				$errors[] = sprintf(__('%1$s missing product identifier (product_id or sku).', 'mw-storesync-import-export'), $prefix);
+				$errors[] = sprintf(
+					/* translators: 1: line item prefix */
+					__('%1$s missing product identifier (product_id or sku).', 'mw-storesync-import-export'),
+					$prefix
+				);
 			}
 
 			if (! is_numeric($quantity) || (float) $quantity <= 0) {
-				$errors[] = sprintf(__('%1$s invalid quantity.', 'mw-storesync-import-export'), $prefix);
+				$errors[] = sprintf(
+					/* translators: 1: line item prefix */
+					__('%1$s invalid quantity.', 'mw-storesync-import-export'),
+					$prefix
+				);
 			}
 
 			foreach (array('subtotal', 'total') as $amount_key) {
 				if (isset($item[$amount_key]) && '' !== $item[$amount_key] && ! is_numeric($item[$amount_key])) {
-					$errors[] = sprintf(__('%1$s invalid %2$s value.', 'mw-storesync-import-export'), $prefix, $amount_key);
+					$errors[] = sprintf(
+						/* translators: 1: line item prefix, 2: amount key name (subtotal or total) */
+						__('%1$s invalid %2$s value.', 'mw-storesync-import-export'),
+						$prefix,
+						$amount_key
+					);
 				}
 			}
 		}

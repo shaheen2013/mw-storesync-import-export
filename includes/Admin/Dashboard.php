@@ -111,8 +111,8 @@ class Dashboard
 		$column_names      = isset($_POST['column_names']) ? array_map('sanitize_text_field', (array) wp_unslash($_POST['column_names'])) : array();
 		$export_filename   = isset($_POST['export_filename']) ? sanitize_file_name(wp_unslash($_POST['export_filename'])) : '';
 		$export_batch_size = isset($_POST['export_batch_size']) ? absint(wp_unslash($_POST['export_batch_size'])) : 30;
-		$delimiter         = isset($_POST['delimiter']) ? wp_unslash($_POST['delimiter']) : ',';
-		if ('other' === $delimiter && isset($_POST['custom_delimiter']) && '' !== trim(wp_unslash($_POST['custom_delimiter']))) {
+		$delimiter         = isset($_POST['delimiter']) ? sanitize_text_field(wp_unslash($_POST['delimiter'])) : ',';
+		if ('other' === $delimiter && isset($_POST['custom_delimiter']) && '' !== trim(sanitize_text_field(wp_unslash($_POST['custom_delimiter'])))) {
 			$delimiter = sanitize_text_field(wp_unslash($_POST['custom_delimiter']));
 		}
 		if (! in_array($delimiter, array(',', ';', "\t", '|'), true)) {
@@ -240,6 +240,7 @@ class Dashboard
 		$job_id    = wp_generate_uuid4();
 		$file_name = $this->get_export_file_name($request['filters'], 'mw-order-export');
 		$file_path = trailingslashit($export_dir) . $job_id . '-' . $file_name;
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fopen -- Direct file stream required for fputcsv.
 		$output    = fopen($file_path, 'wb');
 
 		if (! $output) {
@@ -249,6 +250,7 @@ class Dashboard
 		$writer  = new FileWriter();
 		$headers = $writer->get_csv_headers($request['columns'], isset($request['filters']['column_names']) ? $request['filters']['column_names'] : array());
 		fputcsv($output, \MW\WooImportExport\Exporter\CsvValueSanitizer::sanitize_row($headers), $request['filters']['delimiter']);
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fclose -- Direct file stream required for fputcsv.
 		fclose($output);
 
 		$job = array(
@@ -295,6 +297,7 @@ class Dashboard
 			wp_send_json_error(array('message' => __('The export file is missing. Please start the export again.', 'mw-storesync-import-export')), 404);
 		}
 
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fopen -- Direct file stream required for fputcsv.
 		$output = fopen($job['file_path'], 'ab');
 
 		if (! $output) {
@@ -310,6 +313,7 @@ class Dashboard
 			$batch_exported = $writer->write_orders_csv_batch($output, $job['columns'], $job['filters'], $job['offset'], $current_batch);
 		}
 
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fclose -- Direct file stream required for fputcsv.
 		fclose($output);
 
 		$job['exported'] += $batch_exported;
@@ -376,6 +380,7 @@ class Dashboard
 		header('Content-Disposition: attachment; filename="' . sanitize_file_name($job['file_name']) . '"');
 		header('Content-Length: ' . filesize($job['file_path']));
 
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_readfile -- Direct output stream required for file download.
 		readfile($job['file_path']);
 		wp_delete_file($job['file_path']);
 		delete_transient($this->get_export_job_key($job_id));
@@ -390,27 +395,34 @@ class Dashboard
 
 		check_admin_referer('mw_wie_import_orders');
 
-		if (empty($_FILES['mw_wie_import_file']['tmp_name']) || ! is_uploaded_file($_FILES['mw_wie_import_file']['tmp_name'])) {
+		if (empty($_FILES['mw_wie_import_file']['tmp_name'])) {
 			$this->redirect_with_import_result(array('error' => __('Please choose a valid uploaded CSV file.', 'mw-storesync-import-export')));
 			return;
 		}
 
-		$file = $_FILES['mw_wie_import_file'];
+		$tmp_name = isset($_FILES['mw_wie_import_file']['tmp_name']) ? sanitize_text_field(wp_unslash($_FILES['mw_wie_import_file']['tmp_name'])) : '';
 
-		if (! empty($file['error'])) {
+		if ('' === $tmp_name || ! is_uploaded_file($tmp_name)) {
+			$this->redirect_with_import_result(array('error' => __('Please choose a valid uploaded CSV file.', 'mw-storesync-import-export')));
+			return;
+		}
+
+		$file_error = isset($_FILES['mw_wie_import_file']['error']) ? absint($_FILES['mw_wie_import_file']['error']) : 0;
+
+		if ($file_error > 0) {
 			$this->redirect_with_import_result(array('error' => __('The upload failed. Please try again.', 'mw-storesync-import-export')));
 			return;
 		}
 
 		$max_upload_size = 10 * MB_IN_BYTES;
-		$file_size       = isset($file['size']) ? absint($file['size']) : 0;
+		$file_size       = isset($_FILES['mw_wie_import_file']['size']) ? absint($_FILES['mw_wie_import_file']['size']) : 0;
 
 		if ($file_size <= 0 || $file_size > $max_upload_size) {
 			$this->redirect_with_import_result(array('error' => __('The CSV file is empty or larger than the allowed 10 MB limit.', 'mw-storesync-import-export')));
 			return;
 		}
 
-		$file_name = isset($file['name']) ? sanitize_file_name(wp_unslash($file['name'])) : '';
+		$file_name = isset($_FILES['mw_wie_import_file']['name']) ? sanitize_file_name(wp_unslash($_FILES['mw_wie_import_file']['name'])) : '';
 		$file_ext  = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
 
 		if ('csv' !== $file_ext) {
@@ -418,20 +430,20 @@ class Dashboard
 			return;
 		}
 
-		if (! $this->is_valid_csv_upload($file['tmp_name'])) {
+		if (! $this->is_valid_csv_upload($tmp_name)) {
 			$this->redirect_with_import_result(array('error' => __('The uploaded file content does not appear to be a valid CSV file.', 'mw-storesync-import-export')));
 			return;
 		}
 
 		$parser      = new CsvParser();
-		$rows        = $parser->parse_uploaded_file($file['tmp_name']);
+		$rows        = $parser->parse_uploaded_file($tmp_name);
 		$import_type = isset($_POST['import_type']) ? sanitize_key(wp_unslash($_POST['import_type'])) : 'order';
 
 		$duplicate_handling = isset($_POST['duplicate_handling']) ? sanitize_key(wp_unslash($_POST['duplicate_handling'])) : 'update';
 
 		if ('coupon' === $import_type) {
 			$validator = new CouponProvisioner();
-			$header_check = $validator->validate_headers_from_file($file['tmp_name']);
+			$header_check = $validator->validate_headers_from_file($tmp_name);
 			if (is_wp_error($header_check)) {
 				$this->redirect_with_import_result(array(
 					'error' => __('Coupon import could not start because the CSV is missing required columns.', 'mw-storesync-import-export'),
@@ -465,13 +477,16 @@ class Dashboard
 
 	private function is_valid_csv_upload($path)
 	{
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fopen -- Direct binary stream read for uploaded tmp file validation.
 		$handle = fopen($path, 'rb');
 
 		if (! $handle) {
 			return false;
 		}
 
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fread -- Reading initial bytes to inspect character encoding and mime.
 		$bytes = fread($handle, 512);
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fclose -- Direct stream close.
 		fclose($handle);
 
 		if (false === $bytes || '' === $bytes || false !== strpos($bytes, "\0")) {
@@ -508,8 +523,8 @@ class Dashboard
 		$export_batch_size = isset($post['export_batch_size']) ? absint(wp_unslash($post['export_batch_size'])) : 30;
 		$stars             = isset($post['stars'])             ? absint(wp_unslash($post['stars']))             : 0;
 
-		$delimiter = isset($post['delimiter']) ? wp_unslash($post['delimiter']) : ',';
-		if ('other' === $delimiter && isset($post['custom_delimiter']) && '' !== trim(wp_unslash($post['custom_delimiter']))) {
+		$delimiter = isset($post['delimiter']) ? sanitize_text_field(wp_unslash($post['delimiter'])) : ',';
+		if ('other' === $delimiter && isset($post['custom_delimiter']) && '' !== trim(sanitize_text_field(wp_unslash($post['custom_delimiter'])))) {
 			$delimiter = sanitize_text_field(wp_unslash($post['custom_delimiter']));
 		}
 		$delimiter = \MW\WooImportExport\Exporter\CsvValueSanitizer::validate_delimiter($delimiter);

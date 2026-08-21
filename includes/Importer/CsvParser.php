@@ -7,6 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class CsvParser {
 	public function parse_uploaded_file( $path ) {
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fopen -- Direct stream read required for fgetcsv parser.
 		$handle = fopen( $path, 'r' );
 
 		if ( ! $handle ) {
@@ -17,6 +18,7 @@ class CsvParser {
 		$rows    = array();
 
 		if ( empty( $headers ) ) {
+			// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fclose -- Direct stream close.
 			fclose( $handle );
 			return $rows;
 		}
@@ -33,6 +35,7 @@ class CsvParser {
 			$rows[] = $row;
 		}
 
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fclose -- Direct stream close.
 		fclose( $handle );
 
 		return $rows;

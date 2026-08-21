@@ -36,6 +36,7 @@ class ProductReviewsFileWriter {
 			$headers[] = isset( $custom_names[ $column ] ) && '' !== trim( $custom_names[ $column ] ) ? $custom_names[ $column ] : $column;
 		}
 
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fopen -- Direct output stream required for CSV download.
 		$output = fopen( 'php://output', 'w' );
 		fputcsv( $output, CsvValueSanitizer::sanitize_row( $headers ), $delimiter );
 
@@ -52,6 +53,7 @@ class ProductReviewsFileWriter {
 		}
 
 		if ( ! empty( $filters['stars'] ) ) {
+			// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- Filter WooCommerce reviews by rating meta value.
 			$args['meta_query'] = array(
 				array(
 					'key'   => 'rating',
@@ -105,6 +107,7 @@ class ProductReviewsFileWriter {
 			}
 		}
 
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fclose -- Direct output stream close.
 		fclose( $output );
 		exit;
 	}

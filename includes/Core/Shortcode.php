@@ -22,7 +22,7 @@ class Shortcode {
 				<div class="mw-wie-hero-bg"></div>
 				<div class="mw-wie-container mw-wie-hero-inner">
 					<div class="mw-wie-hero-content">
-						<img src="https://mediusware.com/mw-logo.png" alt="Mediusware Logo" style="max-width: 250px; margin-bottom: 20px; display: block;">
+						<div class="mw-wie-brand-badge" style="display: inline-block; margin-bottom: 15px; font-weight: 600; font-size: 0.85rem; padding: 6px 14px; background: rgba(59, 130, 246, 0.1); color: #2563eb; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px;">Mediusware</div>
 						<h1>StoreSync Import Export for WooCommerce</h1>
 						<p>The ultimate solution to effortlessly import, export, and sync your WooCommerce store data using CSV files with full HPOS compatibility.</p>
 						<div style="display:flex; gap: 15px; margin-top:20px;">
@@ -30,7 +30,7 @@ class Shortcode {
 							<a href="<?php echo esc_url( admin_url( 'admin.php?page=mw-storesync-import-export' ) ); ?>" class="mw-wie-btn mw-wie-btn-outline">Go to Dashboard</a>
 						</div>
 						<div style="margin-top: 40px; display: flex; gap: 20px; color: #94a3b8; font-size: 0.9rem;">
-							<span>✓ Tested up to WP 6.9</span>
+							<span>✓ Tested up to WP 7.1</span>
 							<span>✓ PHP 7.4+ Supported</span>
 							<span>✓ HPOS Ready</span>
 						</div>

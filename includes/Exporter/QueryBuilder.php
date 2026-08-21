@@ -89,11 +89,11 @@ class QueryBuilder
 			$date_created = array();
 
 			if (! empty($filters['date_from']) && strtotime($filters['date_from'])) {
-				$date_created['after'] = date('Y-m-d 00:00:00', strtotime($filters['date_from']));
+				$date_created['after'] = gmdate('Y-m-d 00:00:00', strtotime($filters['date_from']));
 			}
 
 			if (! empty($filters['date_to']) && strtotime($filters['date_to'])) {
-				$date_created['before'] = date('Y-m-d 23:59:59', strtotime($filters['date_to']));
+				$date_created['before'] = gmdate('Y-m-d 23:59:59', strtotime($filters['date_to']));
 			}
 
 			if (! empty($date_created)) {

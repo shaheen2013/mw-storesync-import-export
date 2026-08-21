@@ -10,11 +10,13 @@ class CouponProvisioner
 {
 	public function validate_headers_from_file($file_path)
 	{
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fopen -- Direct stream read required for header inspection.
 		if (! $handle = fopen($file_path, 'r')) {
 			return new \WP_Error('mw_wie_coupon_header_error', __('Unable to read the uploaded CSV file.', 'mw-storesync-import-export'));
 		}
 
 		$headers = fgetcsv($handle);
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fclose -- Direct stream close.
 		fclose($handle);
 
 		if (empty($headers) || ! is_array($headers)) {
@@ -35,6 +37,7 @@ class CouponProvisioner
 			return new \WP_Error(
 				'mw_wie_coupon_missing_columns',
 				sprintf(
+					/* translators: 1: list of missing coupon column names */
 					__('Missing required coupon columns: %1$s.', 'mw-storesync-import-export'),
 					implode(', ', $missing)
 				)
@@ -76,6 +79,7 @@ class CouponProvisioner
 			if (is_wp_error($response)) {
 				++$result['failed'];
 				$message = sprintf(
+					/* translators: 1: row number, 2: error message */
 					__('Row %1$d failed: %2$s', 'mw-storesync-import-export'),
 					$row_number,
 					$response->get_error_message()
@@ -87,6 +91,7 @@ class CouponProvisioner
 
 			++$result['success'];
 			$message = sprintf(
+				/* translators: 1: row number, 2: coupon ID */
 				__('Row %1$d imported coupon #%2$d.', 'mw-storesync-import-export'),
 				$row_number,
 				absint($response)
@@ -97,6 +102,7 @@ class CouponProvisioner
 
 		if ($result['failed'] > 0) {
 			$result['error'] = sprintf(
+				/* translators: 1: number of successful coupons, 2: number of failed coupons */
 				__('Import completed with errors. %1$d coupon row(s) imported successfully and %2$d row(s) failed.', 'mw-storesync-import-export'),
 				absint($result['success']),
 				absint($result['failed'])
@@ -117,33 +123,61 @@ class CouponProvisioner
 		$amount = isset($row['amount']) ? trim((string) $row['amount']) : '';
 
 		if ('' === $code) {
-			$errors[] = sprintf(__('Row %1$d: missing coupon code.', 'mw-storesync-import-export'), $row_number);
+			$errors[] = sprintf(
+				/* translators: 1: row number */
+				__('Row %1$d: missing coupon code.', 'mw-storesync-import-export'),
+				$row_number
+			);
 		}
 
 		if ('' === $discount_type) {
-			$errors[] = sprintf(__('Row %1$d: missing discount type.', 'mw-storesync-import-export'), $row_number);
+			$errors[] = sprintf(
+				/* translators: 1: row number */
+				__('Row %1$d: missing discount type.', 'mw-storesync-import-export'),
+				$row_number
+			);
 		} else {
 			$valid_types = array('fixed_cart', 'fixed_product', 'percent', 'free_shipping');
 			if (! in_array($discount_type, $valid_types, true)) {
-				$errors[] = sprintf(__('Row %1$d: invalid discount type. Allowed values are fixed_cart, fixed_product, percent, free_shipping.', 'mw-storesync-import-export'), $row_number);
+				$errors[] = sprintf(
+					/* translators: 1: row number */
+					__('Row %1$d: invalid discount type. Allowed values are fixed_cart, fixed_product, percent, free_shipping.', 'mw-storesync-import-export'),
+					$row_number
+				);
 			}
 		}
 
 		if ('free_shipping' !== $discount_type && '' === $amount) {
-			$errors[] = sprintf(__('Row %1$d: missing amount for non-free shipping coupon.', 'mw-storesync-import-export'), $row_number);
+			$errors[] = sprintf(
+				/* translators: 1: row number */
+				__('Row %1$d: missing amount for non-free shipping coupon.', 'mw-storesync-import-export'),
+				$row_number
+			);
 		}
 
 		if ('' !== $amount && ! is_numeric($amount)) {
-			$errors[] = sprintf(__('Row %1$d: amount must be numeric.', 'mw-storesync-import-export'), $row_number);
+			$errors[] = sprintf(
+				/* translators: 1: row number */
+				__('Row %1$d: amount must be numeric.', 'mw-storesync-import-export'),
+				$row_number
+			);
 		}
 
 		if (isset($row['usage_limit']) && '' !== trim((string) $row['usage_limit']) && ! is_numeric(trim((string) $row['usage_limit']))) {
-			$errors[] = sprintf(__('Row %1$d: usage limit must be numeric.', 'mw-storesync-import-export'), $row_number);
+			$errors[] = sprintf(
+				/* translators: 1: row number */
+				__('Row %1$d: usage limit must be numeric.', 'mw-storesync-import-export'),
+				$row_number
+			);
 		}
 
 		if (isset($row['date_expires']) && '' !== trim((string) $row['date_expires'])) {
 			if (false === strtotime($row['date_expires'])) {
-				$errors[] = sprintf(__('Row %1$d: invalid expiry date format.', 'mw-storesync-import-export'), $row_number);
+				$errors[] = sprintf(
+					/* translators: 1: row number */
+					__('Row %1$d: invalid expiry date format.', 'mw-storesync-import-export'),
+					$row_number
+				);
 			}
 		}
 
@@ -209,7 +243,7 @@ class CouponProvisioner
 		if (! empty($row['date_expires'])) {
 			$date = strtotime($row['date_expires']);
 			if (false !== $date) {
-				$coupon->set_date_expires(date('Y-m-d H:i:s', $date));
+				$coupon->set_date_expires(gmdate('Y-m-d H:i:s', $date));
 			}
 		}
 
