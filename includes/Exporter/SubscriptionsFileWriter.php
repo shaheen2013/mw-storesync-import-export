@@ -8,7 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 class SubscriptionsFileWriter {
 	public function download_subscriptions_csv( array $columns, array $filters ) {
 		if ( ! class_exists( 'WooCommerce' ) ) {
-			wp_die( esc_html__( 'WooCommerce is required for subscription export.', 'mw-order-import-export-sync-for-woocommerce' ) );
+			wp_die( esc_html__( 'WooCommerce is required for subscription export.', 'mw-storesync-import-export' ) );
 		}
 
 		$available_columns = SubscriptionsColumns::get_columns();

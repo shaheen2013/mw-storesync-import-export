@@ -13,7 +13,7 @@ class Assets {
 	public function enqueue_assets( $hook ) {
 		$screen = get_current_screen();
 
-		if ( ! $screen || 'toplevel_page_mw-order-import-export-sync' !== $screen->id ) {
+		if ( ! $screen || 'toplevel_page_mw-storesync-import-export' !== $screen->id ) {
 			return;
 		}
 
@@ -37,19 +37,19 @@ class Assets {
 			'mwWieParams',
 			array(
 				'labels' => array(
-					'order'              => __( 'Orders', 'mw-order-import-export-sync-for-woocommerce' ),
-					'coupon'             => __( 'Coupons', 'mw-order-import-export-sync-for-woocommerce' ),
-					'product'            => __( 'Products', 'mw-order-import-export-sync-for-woocommerce' ),
-					'product_reviews'    => __( 'Product Reviews', 'mw-order-import-export-sync-for-woocommerce' ),
-					'product_categories' => __( 'Product Categories', 'mw-order-import-export-sync-for-woocommerce' ),
-					'product_tags'       => __( 'Product Tags', 'mw-order-import-export-sync-for-woocommerce' ),
-					'subscriptions'      => __( 'Subscriptions', 'mw-order-import-export-sync-for-woocommerce' ),
-					'user'               => __( 'Users', 'mw-order-import-export-sync-for-woocommerce' ),
-					'reviews'            => __( 'Reviews', 'mw-order-import-export-sync-for-woocommerce' ),
-					'export'             => __( 'Export', 'mw-order-import-export-sync-for-woocommerce' ),
-					'import'             => __( 'Import', 'mw-order-import-export-sync-for-woocommerce' ),
-					'select_method'      => __( 'Select export method — ', 'mw-order-import-export-sync-for-woocommerce' ),
-					'choose_desc'        => __( 'Choose between a fast default export or a more customizable workflow for ', 'mw-order-import-export-sync-for-woocommerce' ),
+					'order'              => __( 'Orders', 'mw-storesync-import-export' ),
+					'coupon'             => __( 'Coupons', 'mw-storesync-import-export' ),
+					'product'            => __( 'Products', 'mw-storesync-import-export' ),
+					'product_reviews'    => __( 'Product Reviews', 'mw-storesync-import-export' ),
+					'product_categories' => __( 'Product Categories', 'mw-storesync-import-export' ),
+					'product_tags'       => __( 'Product Tags', 'mw-storesync-import-export' ),
+					'subscriptions'      => __( 'Subscriptions', 'mw-storesync-import-export' ),
+					'user'               => __( 'Users', 'mw-storesync-import-export' ),
+					'reviews'            => __( 'Reviews', 'mw-storesync-import-export' ),
+					'export'             => __( 'Export', 'mw-storesync-import-export' ),
+					'import'             => __( 'Import', 'mw-storesync-import-export' ),
+					'select_method'      => __( 'Select export method — ', 'mw-storesync-import-export' ),
+					'choose_desc'        => __( 'Choose between a fast default export or a more customizable workflow for ', 'mw-storesync-import-export' ),
 				),
 			)
 		);

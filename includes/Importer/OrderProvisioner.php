@@ -11,7 +11,7 @@ class OrderProvisioner
 	public function import_rows(array $rows, $duplicate_handling = 'update')
 	{
 		if (! function_exists('wc_create_order')) {
-			return array('error' => __('WooCommerce is required for order import.', 'mw-order-import-export-sync-for-woocommerce'));
+			return array('error' => __('WooCommerce is required for order import.', 'mw-storesync-import-export'));
 		}
 
 		$result = array(
@@ -41,7 +41,7 @@ class OrderProvisioner
 				++$result['failed'];
 				$result['logs'][] = sprintf(
 					/* translators: 1: row number, 2: error message */
-					__('Row %1$d failed: %2$s', 'mw-order-import-export-sync-for-woocommerce'),
+					__('Row %1$d failed: %2$s', 'mw-storesync-import-export'),
 					$row_number,
 					$response->get_error_message()
 				);
@@ -52,26 +52,26 @@ class OrderProvisioner
 			if (is_array($response) && isset($response['id'])) {
 				if (! empty($response['skipped'])) {
 					++$result['skipped'];
-					$result['logs'][] = sprintf(__('Row %1$d skipped existing order #%2$d.', 'mw-order-import-export-sync-for-woocommerce'), $row_number, $response['id']);
+					$result['logs'][] = sprintf(__('Row %1$d skipped existing order #%2$d.', 'mw-storesync-import-export'), $row_number, $response['id']);
 					continue;
 				}
 
 				++$result['success'];
 				if (! empty($response['is_new'])) {
-					$result['logs'][] = sprintf(__('Row %1$d imported as order #%2$d.', 'mw-order-import-export-sync-for-woocommerce'), $row_number, $response['id']);
+					$result['logs'][] = sprintf(__('Row %1$d imported as order #%2$d.', 'mw-storesync-import-export'), $row_number, $response['id']);
 				} else {
-					$result['logs'][] = sprintf(__('Row %1$d updated order #%2$d.', 'mw-order-import-export-sync-for-woocommerce'), $row_number, $response['id']);
+					$result['logs'][] = sprintf(__('Row %1$d updated order #%2$d.', 'mw-storesync-import-export'), $row_number, $response['id']);
 				}
 				continue;
 			}
 
 			// Fallback: older behavior returned an ID directly.
 			++$result['success'];
-			$result['logs'][] = sprintf(__('Row %1$d imported as order #%2$d.', 'mw-order-import-export-sync-for-woocommerce'), $row_number, absint($response));
+			$result['logs'][] = sprintf(__('Row %1$d imported as order #%2$d.', 'mw-storesync-import-export'), $row_number, absint($response));
 		}
 
 		if ($result['failed'] > 0) {
-			$result['error'] = __('Import completed with errors. Some rows failed.', 'mw-order-import-export-sync-for-woocommerce');
+			$result['error'] = __('Import completed with errors. Some rows failed.', 'mw-storesync-import-export');
 		}
 
 		return $result;
@@ -89,23 +89,23 @@ class OrderProvisioner
 		$customer_id   = isset($row['customer_id']) ? trim($row['customer_id']) : '';
 
 		if ('' === $billing_email && '' === $customer_id) {
-			$errors[] = sprintf( /* translators: 1: row number */__('Row %1$d: missing customer identifier (billing_email or customer_id required).', 'mw-order-import-export-sync-for-woocommerce'), $row_number);
+			$errors[] = sprintf( /* translators: 1: row number */__('Row %1$d: missing customer identifier (billing_email or customer_id required).', 'mw-storesync-import-export'), $row_number);
 		}
 
 		// If order_total is provided, it must be numeric.
 		if (isset($row['order_total']) && '' !== trim((string) $row['order_total']) && ! is_numeric($row['order_total'])) {
-			$errors[] = sprintf(__('Row %1$d: order_total must be numeric.', 'mw-order-import-export-sync-for-woocommerce'), $row_number);
+			$errors[] = sprintf(__('Row %1$d: order_total must be numeric.', 'mw-storesync-import-export'), $row_number);
 		}
 
 		if (! empty($row['status']) && ! $this->is_valid_order_status($row['status'])) {
-			$errors[] = sprintf(__('Row %1$d: invalid order status.', 'mw-order-import-export-sync-for-woocommerce'), $row_number);
+			$errors[] = sprintf(__('Row %1$d: invalid order status.', 'mw-storesync-import-export'), $row_number);
 		}
 
 		// Validate line_items JSON shape if present.
 		if (! empty($row['line_items'])) {
 			$line_items = json_decode($row['line_items'], true);
 			if (! is_array($line_items)) {
-				$errors[] = sprintf(__('Row %1$d: line_items must be a JSON array.', 'mw-order-import-export-sync-for-woocommerce'), $row_number);
+				$errors[] = sprintf(__('Row %1$d: line_items must be a JSON array.', 'mw-storesync-import-export'), $row_number);
 			} else {
 				$errors = array_merge($errors, $this->validate_line_items($line_items, $row_number));
 			}
@@ -238,7 +238,7 @@ class OrderProvisioner
 		if (! empty($row['status'])) {
 			$status = $this->normalize_order_status($row['status']);
 			if ('' === $status) {
-				return new \WP_Error('mw_wie_invalid_status', __('Invalid order status.', 'mw-order-import-export-sync-for-woocommerce'));
+				return new \WP_Error('mw_wie_invalid_status', __('Invalid order status.', 'mw-storesync-import-export'));
 			}
 			$order->set_status($status);
 		}
@@ -323,7 +323,7 @@ class OrderProvisioner
 		$line_items = json_decode($row['line_items'], true);
 
 		if (! is_array($line_items)) {
-			return new \WP_Error('mw_wie_invalid_line_items', __('Line items must be a JSON array.', 'mw-order-import-export-sync-for-woocommerce'));
+			return new \WP_Error('mw_wie_invalid_line_items', __('Line items must be a JSON array.', 'mw-storesync-import-export'));
 		}
 
 		$line_item_errors = $this->validate_line_items($line_items);
@@ -345,7 +345,7 @@ class OrderProvisioner
 			}
 
 			if (! $product) {
-				return new \WP_Error('mw_wie_product_not_found', __('A line item product could not be found.', 'mw-order-import-export-sync-for-woocommerce'));
+				return new \WP_Error('mw_wie_product_not_found', __('A line item product could not be found.', 'mw-storesync-import-export'));
 			}
 
 			$quantity = ! empty($line_item['quantity']) ? wc_stock_amount((float) $line_item['quantity']) : 1;
@@ -362,11 +362,11 @@ class OrderProvisioner
 		foreach ($line_items as $index => $item) {
 			$item_number = $index + 1;
 			$prefix      = $row_number
-				? sprintf(__('Row %1$d, line item %2$d:', 'mw-order-import-export-sync-for-woocommerce'), $row_number, $item_number)
-				: sprintf(__('Line item %1$d:', 'mw-order-import-export-sync-for-woocommerce'), $item_number);
+				? sprintf(__('Row %1$d, line item %2$d:', 'mw-storesync-import-export'), $row_number, $item_number)
+				: sprintf(__('Line item %1$d:', 'mw-storesync-import-export'), $item_number);
 
 			if (! is_array($item)) {
-				$errors[] = sprintf(__('%1$s item must be an object.', 'mw-order-import-export-sync-for-woocommerce'), $prefix);
+				$errors[] = sprintf(__('%1$s item must be an object.', 'mw-storesync-import-export'), $prefix);
 				continue;
 			}
 
@@ -375,16 +375,16 @@ class OrderProvisioner
 			$quantity   = isset($item['quantity']) ? $item['quantity'] : 1;
 
 			if (! $product_id && '' === $sku) {
-				$errors[] = sprintf(__('%1$s missing product identifier (product_id or sku).', 'mw-order-import-export-sync-for-woocommerce'), $prefix);
+				$errors[] = sprintf(__('%1$s missing product identifier (product_id or sku).', 'mw-storesync-import-export'), $prefix);
 			}
 
 			if (! is_numeric($quantity) || (float) $quantity <= 0) {
-				$errors[] = sprintf(__('%1$s invalid quantity.', 'mw-order-import-export-sync-for-woocommerce'), $prefix);
+				$errors[] = sprintf(__('%1$s invalid quantity.', 'mw-storesync-import-export'), $prefix);
 			}
 
 			foreach (array('subtotal', 'total') as $amount_key) {
 				if (isset($item[$amount_key]) && '' !== $item[$amount_key] && ! is_numeric($item[$amount_key])) {
-					$errors[] = sprintf(__('%1$s invalid %2$s value.', 'mw-order-import-export-sync-for-woocommerce'), $prefix, $amount_key);
+					$errors[] = sprintf(__('%1$s invalid %2$s value.', 'mw-storesync-import-export'), $prefix, $amount_key);
 				}
 			}
 		}

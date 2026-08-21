@@ -8,7 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 class ProductReviewsProvisioner {
 	public function import_rows( array $rows ) {
 		if ( ! class_exists( 'WooCommerce' ) ) {
-			return array( 'error' => __( 'WooCommerce is required for review import.', 'mw-order-import-export-sync-for-woocommerce' ) );
+			return array( 'error' => __( 'WooCommerce is required for review import.', 'mw-storesync-import-export' ) );
 		}
 
 		$result = array(
@@ -25,7 +25,7 @@ class ProductReviewsProvisioner {
 				++$result['failed'];
 				$result['logs'][] = sprintf(
 					/* translators: 1: row number, 2: error message */
-					__( 'Row %1$d failed: %2$s', 'mw-order-import-export-sync-for-woocommerce' ),
+					__( 'Row %1$d failed: %2$s', 'mw-storesync-import-export' ),
 					$row_number,
 					$response->get_error_message()
 				);
@@ -35,7 +35,7 @@ class ProductReviewsProvisioner {
 			++$result['success'];
 			$result['logs'][] = sprintf(
 				/* translators: 1: row number, 2: review ID */
-				__( 'Row %1$d imported as review #%2$d.', 'mw-order-import-export-sync-for-woocommerce' ),
+				__( 'Row %1$d imported as review #%2$d.', 'mw-storesync-import-export' ),
 				$row_number,
 				$response
 			);
@@ -51,12 +51,12 @@ class ProductReviewsProvisioner {
 		}
 
 		if ( ! $product_id ) {
-			return new \WP_Error( 'mw_wie_review_import_error', __( 'Missing product ID or SKU.', 'mw-order-import-export-sync-for-woocommerce' ) );
+			return new \WP_Error( 'mw_wie_review_import_error', __( 'Missing product ID or SKU.', 'mw-storesync-import-export' ) );
 		}
 
 		$product = wc_get_product( $product_id );
 		if ( ! $product ) {
-			return new \WP_Error( 'mw_wie_review_import_error', __( 'Product not found.', 'mw-order-import-export-sync-for-woocommerce' ) );
+			return new \WP_Error( 'mw_wie_review_import_error', __( 'Product not found.', 'mw-storesync-import-export' ) );
 		}
 
 		$review_id = ! empty( $row['review_id'] ) ? absint( $row['review_id'] ) : 0;
@@ -84,7 +84,7 @@ class ProductReviewsProvisioner {
 		}
 
 		if ( ! $inserted_id || is_wp_error( $inserted_id ) ) {
-			return new \WP_Error( 'mw_wie_review_import_error', __( 'Failed to save review.', 'mw-order-import-export-sync-for-woocommerce' ) );
+			return new \WP_Error( 'mw_wie_review_import_error', __( 'Failed to save review.', 'mw-storesync-import-export' ) );
 		}
 
 		if ( isset( $row['rating'] ) ) {

@@ -8,7 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 class ProductReviewsFileWriter {
 	public function download_reviews_csv( array $columns, array $filters ) {
 		if ( ! class_exists( 'WooCommerce' ) ) {
-			wp_die( esc_html__( 'WooCommerce is required for review export.', 'mw-order-import-export-sync-for-woocommerce' ) );
+			wp_die( esc_html__( 'WooCommerce is required for review export.', 'mw-storesync-import-export' ) );
 		}
 
 		$available_columns = ProductReviewsColumns::get_columns();

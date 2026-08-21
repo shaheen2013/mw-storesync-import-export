@@ -1,8 +1,8 @@
 # Copyright (C) 2026 MW
-# This file is distributed under the same license as the MW Order Import Export & Sync for WooCommerce plugin.
+# This file is distributed under the same license as the StoreSync Import Export for WooCommerce plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: MW Order Import Export & Sync for WooCommerce 1.1.4\n"
+"Project-Id-Version: StoreSync Import Export for WooCommerce 1.1.4\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -538,7 +538,7 @@ msgid "MW Order Import Export & Sync"
 msgstr ""
 
 #: includes/Core/Plugin.php:43
-msgid "MW Order Import Export & Sync for WooCommerce requires WooCommerce to be active."
+msgid "StoreSync Import Export for WooCommerce requires WooCommerce to be active."
 msgstr ""
 
 #: includes/Exporter/ProductColumns.php:18

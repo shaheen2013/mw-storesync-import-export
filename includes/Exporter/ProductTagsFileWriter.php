@@ -8,7 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 class ProductTagsFileWriter {
 	public function download_tags_csv( array $columns, array $filters ) {
 		if ( ! class_exists( 'WooCommerce' ) ) {
-			wp_die( esc_html__( 'WooCommerce is required for tag export.', 'mw-order-import-export-sync-for-woocommerce' ) );
+			wp_die( esc_html__( 'WooCommerce is required for tag export.', 'mw-storesync-import-export' ) );
 		}
 
 		$available_columns = ProductTagsColumns::get_columns();

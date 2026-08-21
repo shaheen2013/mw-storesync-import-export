@@ -8,22 +8,22 @@ if ( ! defined( 'ABSPATH' ) ) {
 class ProductColumns {
 	public static function get_columns() {
 		$columns = array(
-			'product_id'        => __( 'Product ID', 'mw-order-import-export-sync-for-woocommerce' ),
-			'sku'               => __( 'SKU', 'mw-order-import-export-sync-for-woocommerce' ),
-			'name'              => __( 'Name', 'mw-order-import-export-sync-for-woocommerce' ),
-			'type'              => __( 'Product type', 'mw-order-import-export-sync-for-woocommerce' ),
-			'status'            => __( 'Status', 'mw-order-import-export-sync-for-woocommerce' ),
-			'regular_price'     => __( 'Regular price', 'mw-order-import-export-sync-for-woocommerce' ),
-			'sale_price'        => __( 'Sale price', 'mw-order-import-export-sync-for-woocommerce' ),
-			'manage_stock'      => __( 'Manage stock', 'mw-order-import-export-sync-for-woocommerce' ),
-			'stock_quantity'    => __( 'Stock quantity', 'mw-order-import-export-sync-for-woocommerce' ),
-			'stock_status'      => __( 'Stock status', 'mw-order-import-export-sync-for-woocommerce' ),
-			'backorders'        => __( 'Backorders', 'mw-order-import-export-sync-for-woocommerce' ),
-			'description'       => __( 'Description', 'mw-order-import-export-sync-for-woocommerce' ),
-			'short_description' => __( 'Short description', 'mw-order-import-export-sync-for-woocommerce' ),
-			'categories'        => __( 'Categories', 'mw-order-import-export-sync-for-woocommerce' ),
-			'tags'              => __( 'Tags', 'mw-order-import-export-sync-for-woocommerce' ),
-			'images'            => __( 'Images', 'mw-order-import-export-sync-for-woocommerce' ),
+			'product_id'        => __( 'Product ID', 'mw-storesync-import-export' ),
+			'sku'               => __( 'SKU', 'mw-storesync-import-export' ),
+			'name'              => __( 'Name', 'mw-storesync-import-export' ),
+			'type'              => __( 'Product type', 'mw-storesync-import-export' ),
+			'status'            => __( 'Status', 'mw-storesync-import-export' ),
+			'regular_price'     => __( 'Regular price', 'mw-storesync-import-export' ),
+			'sale_price'        => __( 'Sale price', 'mw-storesync-import-export' ),
+			'manage_stock'      => __( 'Manage stock', 'mw-storesync-import-export' ),
+			'stock_quantity'    => __( 'Stock quantity', 'mw-storesync-import-export' ),
+			'stock_status'      => __( 'Stock status', 'mw-storesync-import-export' ),
+			'backorders'        => __( 'Backorders', 'mw-storesync-import-export' ),
+			'description'       => __( 'Description', 'mw-storesync-import-export' ),
+			'short_description' => __( 'Short description', 'mw-storesync-import-export' ),
+			'categories'        => __( 'Categories', 'mw-storesync-import-export' ),
+			'tags'              => __( 'Tags', 'mw-storesync-import-export' ),
+			'images'            => __( 'Images', 'mw-storesync-import-export' ),
 		);
 
 		return apply_filters( 'mw_wie_product_columns', $columns );

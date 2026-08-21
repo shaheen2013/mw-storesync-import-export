@@ -8,14 +8,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 class ProductCategoriesColumns {
 	public static function get_columns() {
 		$columns = array(
-			'term_id'      => __( 'Category ID', 'mw-order-import-export-sync-for-woocommerce' ),
-			'name'         => __( 'Name', 'mw-order-import-export-sync-for-woocommerce' ),
-			'slug'         => __( 'Slug', 'mw-order-import-export-sync-for-woocommerce' ),
-			'description'  => __( 'Description', 'mw-order-import-export-sync-for-woocommerce' ),
-			'parent_id'    => __( 'Parent Category ID', 'mw-order-import-export-sync-for-woocommerce' ),
-			'parent_slug'  => __( 'Parent Category Slug', 'mw-order-import-export-sync-for-woocommerce' ),
-			'display_type' => __( 'Display Type', 'mw-order-import-export-sync-for-woocommerce' ),
-			'thumbnail'    => __( 'Thumbnail Image URL', 'mw-order-import-export-sync-for-woocommerce' ),
+			'term_id'      => __( 'Category ID', 'mw-storesync-import-export' ),
+			'name'         => __( 'Name', 'mw-storesync-import-export' ),
+			'slug'         => __( 'Slug', 'mw-storesync-import-export' ),
+			'description'  => __( 'Description', 'mw-storesync-import-export' ),
+			'parent_id'    => __( 'Parent Category ID', 'mw-storesync-import-export' ),
+			'parent_slug'  => __( 'Parent Category Slug', 'mw-storesync-import-export' ),
+			'display_type' => __( 'Display Type', 'mw-storesync-import-export' ),
+			'thumbnail'    => __( 'Thumbnail Image URL', 'mw-storesync-import-export' ),
 		);
 
 		return apply_filters( 'mw_wie_product_categories_columns', $columns );

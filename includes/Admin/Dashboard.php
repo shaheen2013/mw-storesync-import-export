@@ -47,10 +47,10 @@ class Dashboard
 		}
 
 		add_menu_page(
-			__('MW Order Import Export', 'mw-order-import-export-sync-for-woocommerce'),
-			__('MW Order I/E', 'mw-order-import-export-sync-for-woocommerce'),
+			__('StoreSync Import Export', 'mw-storesync-import-export'),
+			__('StoreSync', 'mw-storesync-import-export'),
 			'manage_woocommerce',
-			'mw-order-import-export-sync',
+			'mw-storesync-import-export',
 			array($this, 'render'),
 			'dashicons-database-import',
 			56
@@ -60,7 +60,7 @@ class Dashboard
 	public function render()
 	{
 		if (! current_user_can('manage_woocommerce')) {
-			wp_die(esc_html__('You do not have permission to access this page.', 'mw-order-import-export-sync-for-woocommerce'));
+			wp_die(esc_html__('You do not have permission to access this page.', 'mw-storesync-import-export'));
 		}
 
 		$columns                         = OrderColumns::get_columns();
@@ -90,7 +90,7 @@ class Dashboard
 	public function handle_export()
 	{
 		if (! current_user_can('manage_woocommerce')) {
-			wp_die(esc_html__('Forbidden.', 'mw-order-import-export-sync-for-woocommerce'), 403);
+			wp_die(esc_html__('Forbidden.', 'mw-storesync-import-export'), 403);
 		}
 
 		check_admin_referer('mw_wie_export_orders');
@@ -221,7 +221,7 @@ class Dashboard
 	public function ajax_start_export()
 	{
 		if (! current_user_can('manage_woocommerce')) {
-			wp_send_json_error(array('message' => __('Forbidden.', 'mw-order-import-export-sync-for-woocommerce')), 403);
+			wp_send_json_error(array('message' => __('Forbidden.', 'mw-storesync-import-export')), 403);
 		}
 
 		check_ajax_referer('mw_wie_export_orders');
@@ -229,7 +229,7 @@ class Dashboard
 		$request = $this->get_export_request_data($_POST);
 
 		if ('order' !== $request['export_type']) {
-			wp_send_json_error(array('message' => __('Batch progress export is currently available for order exports.', 'mw-order-import-export-sync-for-woocommerce')), 400);
+			wp_send_json_error(array('message' => __('Batch progress export is currently available for order exports.', 'mw-storesync-import-export')), 400);
 		}
 
 		$export_dir = $this->get_export_directory();
@@ -243,7 +243,7 @@ class Dashboard
 		$output    = fopen($file_path, 'wb');
 
 		if (! $output) {
-			wp_send_json_error(array('message' => __('Unable to create the export file. Please check upload directory permissions.', 'mw-order-import-export-sync-for-woocommerce')), 500);
+			wp_send_json_error(array('message' => __('Unable to create the export file. Please check upload directory permissions.', 'mw-storesync-import-export')), 500);
 		}
 
 		$writer  = new FileWriter();
@@ -271,14 +271,14 @@ class Dashboard
 			'exported'   => 0,
 			'limit'      => $job['limit'],
 			'percentage' => 0,
-			'message'    => __('Export started.', 'mw-order-import-export-sync-for-woocommerce'),
+			'message'    => __('Export started.', 'mw-storesync-import-export'),
 		));
 	}
 
 	public function ajax_export_batch()
 	{
 		if (! current_user_can('manage_woocommerce')) {
-			wp_send_json_error(array('message' => __('Forbidden.', 'mw-order-import-export-sync-for-woocommerce')), 403);
+			wp_send_json_error(array('message' => __('Forbidden.', 'mw-storesync-import-export')), 403);
 		}
 
 		check_ajax_referer('mw_wie_export_orders');
@@ -287,18 +287,18 @@ class Dashboard
 		$job    = $job_id ? get_transient($this->get_export_job_key($job_id)) : false;
 
 		if (empty($job) || ! is_array($job) || absint($job['user_id']) !== get_current_user_id()) {
-			wp_send_json_error(array('message' => __('The export job expired. Please start the export again.', 'mw-order-import-export-sync-for-woocommerce')), 404);
+			wp_send_json_error(array('message' => __('The export job expired. Please start the export again.', 'mw-storesync-import-export')), 404);
 		}
 
 		if (empty($job['file_path']) || ! file_exists($job['file_path'])) {
 			delete_transient($this->get_export_job_key($job_id));
-			wp_send_json_error(array('message' => __('The export file is missing. Please start the export again.', 'mw-order-import-export-sync-for-woocommerce')), 404);
+			wp_send_json_error(array('message' => __('The export file is missing. Please start the export again.', 'mw-storesync-import-export')), 404);
 		}
 
 		$output = fopen($job['file_path'], 'ab');
 
 		if (! $output) {
-			wp_send_json_error(array('message' => __('Unable to write to the export file.', 'mw-order-import-export-sync-for-woocommerce')), 500);
+			wp_send_json_error(array('message' => __('Unable to write to the export file.', 'mw-storesync-import-export')), 500);
 		}
 
 		$remaining      = max(0, absint($job['limit']) - absint($job['exported']));
@@ -342,20 +342,20 @@ class Dashboard
 			'percentage'   => $percentage,
 			'done'         => $done,
 			'download_url' => $job['download_url'],
-			'message'      => $done ? __('Export complete.', 'mw-order-import-export-sync-for-woocommerce') : __('Exporting...', 'mw-order-import-export-sync-for-woocommerce'),
+			'message'      => $done ? __('Export complete.', 'mw-storesync-import-export') : __('Exporting...', 'mw-storesync-import-export'),
 		));
 	}
 
 	public function handle_export_download()
 	{
 		if (! current_user_can('manage_woocommerce')) {
-			wp_die(esc_html__('Forbidden.', 'mw-order-import-export-sync-for-woocommerce'), 403);
+			wp_die(esc_html__('Forbidden.', 'mw-storesync-import-export'), 403);
 		}
 
 		$job_id = isset($_GET['job_id']) ? sanitize_key(wp_unslash($_GET['job_id'])) : '';
 
 		if ('' === $job_id) {
-			wp_die(esc_html__('Missing export job.', 'mw-order-import-export-sync-for-woocommerce'), 400);
+			wp_die(esc_html__('Missing export job.', 'mw-storesync-import-export'), 400);
 		}
 
 		check_admin_referer('mw_wie_download_export_' . $job_id);
@@ -363,12 +363,12 @@ class Dashboard
 		$job = get_transient($this->get_export_job_key($job_id));
 
 		if (empty($job) || ! is_array($job) || absint($job['user_id']) !== get_current_user_id()) {
-			wp_die(esc_html__('The export job expired. Please start the export again.', 'mw-order-import-export-sync-for-woocommerce'), 404);
+			wp_die(esc_html__('The export job expired. Please start the export again.', 'mw-storesync-import-export'), 404);
 		}
 
 		if (empty($job['file_path']) || ! file_exists($job['file_path'])) {
 			delete_transient($this->get_export_job_key($job_id));
-			wp_die(esc_html__('The export file is missing. Please start the export again.', 'mw-order-import-export-sync-for-woocommerce'), 404);
+			wp_die(esc_html__('The export file is missing. Please start the export again.', 'mw-storesync-import-export'), 404);
 		}
 
 		nocache_headers();
@@ -385,20 +385,20 @@ class Dashboard
 	public function handle_import()
 	{
 		if (! current_user_can('manage_woocommerce')) {
-			wp_die(esc_html__('Forbidden.', 'mw-order-import-export-sync-for-woocommerce'), 403);
+			wp_die(esc_html__('Forbidden.', 'mw-storesync-import-export'), 403);
 		}
 
 		check_admin_referer('mw_wie_import_orders');
 
 		if (empty($_FILES['mw_wie_import_file']['tmp_name']) || ! is_uploaded_file($_FILES['mw_wie_import_file']['tmp_name'])) {
-			$this->redirect_with_import_result(array('error' => __('Please choose a valid uploaded CSV file.', 'mw-order-import-export-sync-for-woocommerce')));
+			$this->redirect_with_import_result(array('error' => __('Please choose a valid uploaded CSV file.', 'mw-storesync-import-export')));
 			return;
 		}
 
 		$file = $_FILES['mw_wie_import_file'];
 
 		if (! empty($file['error'])) {
-			$this->redirect_with_import_result(array('error' => __('The upload failed. Please try again.', 'mw-order-import-export-sync-for-woocommerce')));
+			$this->redirect_with_import_result(array('error' => __('The upload failed. Please try again.', 'mw-storesync-import-export')));
 			return;
 		}
 
@@ -406,7 +406,7 @@ class Dashboard
 		$file_size       = isset($file['size']) ? absint($file['size']) : 0;
 
 		if ($file_size <= 0 || $file_size > $max_upload_size) {
-			$this->redirect_with_import_result(array('error' => __('The CSV file is empty or larger than the allowed 10 MB limit.', 'mw-order-import-export-sync-for-woocommerce')));
+			$this->redirect_with_import_result(array('error' => __('The CSV file is empty or larger than the allowed 10 MB limit.', 'mw-storesync-import-export')));
 			return;
 		}
 
@@ -414,12 +414,12 @@ class Dashboard
 		$file_ext  = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
 
 		if ('csv' !== $file_ext) {
-			$this->redirect_with_import_result(array('error' => __('Only CSV files are supported in this version.', 'mw-order-import-export-sync-for-woocommerce')));
+			$this->redirect_with_import_result(array('error' => __('Only CSV files are supported in this version.', 'mw-storesync-import-export')));
 			return;
 		}
 
 		if (! $this->is_valid_csv_upload($file['tmp_name'])) {
-			$this->redirect_with_import_result(array('error' => __('The uploaded file content does not appear to be a valid CSV file.', 'mw-order-import-export-sync-for-woocommerce')));
+			$this->redirect_with_import_result(array('error' => __('The uploaded file content does not appear to be a valid CSV file.', 'mw-storesync-import-export')));
 			return;
 		}
 
@@ -434,7 +434,7 @@ class Dashboard
 			$header_check = $validator->validate_headers_from_file($file['tmp_name']);
 			if (is_wp_error($header_check)) {
 				$this->redirect_with_import_result(array(
-					'error' => __('Coupon import could not start because the CSV is missing required columns.', 'mw-order-import-export-sync-for-woocommerce'),
+					'error' => __('Coupon import could not start because the CSV is missing required columns.', 'mw-storesync-import-export'),
 					'logs' => array($header_check->get_error_message()),
 				));
 			}
@@ -459,7 +459,7 @@ class Dashboard
 	private function redirect_with_import_result($result)
 	{
 		set_transient('mw_wie_tr_import_result_' . get_current_user_id(), $result, MINUTE_IN_SECONDS);
-		wp_safe_redirect(admin_url('admin.php?page=mw-order-import-export-sync'));
+		wp_safe_redirect(admin_url('admin.php?page=mw-storesync-import-export'));
 		exit;
 	}
 
@@ -568,7 +568,7 @@ class Dashboard
 			if (! wp_mkdir_p($export_dir)) {
 				return new \WP_Error(
 					'mw_wie_mkdir',
-					__('Unable to create the export directory. Please check your server permissions.', 'mw-order-import-export-sync-for-woocommerce')
+					__('Unable to create the export directory. Please check your server permissions.', 'mw-storesync-import-export')
 				);
 			}
 		}

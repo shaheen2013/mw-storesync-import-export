@@ -6,10 +6,11 @@
  * Version: 1.1.4
  * Author: Mediusware
  * Author URI: https://mediusware.com/
- * Text Domain: mw-order-import-export-sync-for-woocommerce
+ * Text Domain: mw-storesync-import-export
  * Domain Path: /languages
  * Requires at least: 6.0
  * Requires PHP: 7.4
+ * Requires Plugins: woocommerce
  * WC requires at least: 7.0
  * License: GPLv2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -25,7 +26,7 @@ define( 'MW_WIE_VERSION', '1.1.4' );
 define( 'MW_WIE_PLUGIN_FILE', __FILE__ );
 define( 'MW_WIE_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'MW_WIE_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
-define( 'MW_WIE_TEXT_DOMAIN', 'mw-order-import-export-sync-for-woocommerce' );
+define( 'MW_WIE_TEXT_DOMAIN', 'mw-storesync-import-export' );
 
 add_action( 'before_woocommerce_init', 'mw_wie_declare_hpos_compatibility' );
 
@@ -78,7 +79,7 @@ function mw_wie_check_woocommerce_dependency() {
 function mw_wie_woocommerce_missing_notice() {
 	?>
 	<div class="notice notice-error is-dismissible">
-		<p><strong><?php esc_html_e( 'MW Order Import Export & Sync for WooCommerce', 'mw-order-import-export-sync-for-woocommerce' ); ?></strong> <?php esc_html_e( 'requires WooCommerce to be installed and active. The plugin has been deactivated.', 'mw-order-import-export-sync-for-woocommerce' ); ?></p>
+		<p><strong><?php esc_html_e( 'StoreSync Import Export for WooCommerce', 'mw-storesync-import-export' ); ?></strong> <?php esc_html_e( 'requires WooCommerce to be installed and active. The plugin has been deactivated.', 'mw-storesync-import-export' ); ?></p>
 	</div>
 	<?php
 }
@@ -102,4 +103,3 @@ function mw_wie_boot_plugin() {
 	$plugin = new \MW\WooImportExport\Core\Plugin();
 	$plugin->run();
 }
-

@@ -8,7 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 class ProductCategoriesFileWriter {
 	public function download_categories_csv( array $columns, array $filters ) {
 		if ( ! class_exists( 'WooCommerce' ) ) {
-			wp_die( esc_html__( 'WooCommerce is required for category export.', 'mw-order-import-export-sync-for-woocommerce' ) );
+			wp_die( esc_html__( 'WooCommerce is required for category export.', 'mw-storesync-import-export' ) );
 		}
 
 		$available_columns = ProductCategoriesColumns::get_columns();

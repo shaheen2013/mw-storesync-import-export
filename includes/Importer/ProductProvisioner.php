@@ -8,7 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 class ProductProvisioner {
 	public function import_rows( array $rows ) {
 		if ( ! function_exists( 'wc_get_product' ) ) {
-			return array( 'error' => __( 'WooCommerce is required for product import.', 'mw-order-import-export-sync-for-woocommerce' ) );
+			return array( 'error' => __( 'WooCommerce is required for product import.', 'mw-storesync-import-export' ) );
 		}
 
 		$result = array(
@@ -25,7 +25,7 @@ class ProductProvisioner {
 				++$result['failed'];
 				$result['logs'][] = sprintf(
 					/* translators: 1: row number, 2: error message */
-					__( 'Row %1$d failed: %2$s', 'mw-order-import-export-sync-for-woocommerce' ),
+					__( 'Row %1$d failed: %2$s', 'mw-storesync-import-export' ),
 					$row_number,
 					$response->get_error_message()
 				);
@@ -35,7 +35,7 @@ class ProductProvisioner {
 			++$result['success'];
 			$result['logs'][] = sprintf(
 				/* translators: 1: row number, 2: product ID */
-				__( 'Row %1$d imported as product #%2$d.', 'mw-order-import-export-sync-for-woocommerce' ),
+				__( 'Row %1$d imported as product #%2$d.', 'mw-storesync-import-export' ),
 				$row_number,
 				$response
 			);
@@ -65,7 +65,7 @@ class ProductProvisioner {
 		}
 
 		if ( ! $product ) {
-			return new \WP_Error( 'mw_wie_product_import_error', __( 'Unable to create or retrieve the product.', 'mw-order-import-export-sync-for-woocommerce' ) );
+			return new \WP_Error( 'mw_wie_product_import_error', __( 'Unable to create or retrieve the product.', 'mw-storesync-import-export' ) );
 		}
 
 		$this->apply_core_fields( $product, $row );
@@ -79,7 +79,7 @@ class ProductProvisioner {
 	}
 
 	private function create_product( array $row ) {
-		$post_title   = ! empty( $row['name'] ) ? sanitize_text_field( $row['name'] ) : __( 'Untitled product', 'mw-order-import-export-sync-for-woocommerce' );
+		$post_title   = ! empty( $row['name'] ) ? sanitize_text_field( $row['name'] ) : __( 'Untitled product', 'mw-storesync-import-export' );
 		$post_content = ! empty( $row['description'] ) ? wp_kses_post( $row['description'] ) : '';
 		$post_excerpt = ! empty( $row['short_description'] ) ? wp_kses_post( $row['short_description'] ) : '';
 		$post_status  = ! empty( $row['status'] ) ? sanitize_key( $row['status'] ) : 'publish';
@@ -95,7 +95,7 @@ class ProductProvisioner {
 		);
 
 		if ( is_wp_error( $product_id ) || ! $product_id ) {
-			return new \WP_Error( 'mw_wie_product_create_error', __( 'Unable to create product post.', 'mw-order-import-export-sync-for-woocommerce' ) );
+			return new \WP_Error( 'mw_wie_product_create_error', __( 'Unable to create product post.', 'mw-storesync-import-export' ) );
 		}
 
 		return $product_id;

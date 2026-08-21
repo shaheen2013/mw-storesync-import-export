@@ -11,14 +11,14 @@ class CouponProvisioner
 	public function validate_headers_from_file($file_path)
 	{
 		if (! $handle = fopen($file_path, 'r')) {
-			return new \WP_Error('mw_wie_coupon_header_error', __('Unable to read the uploaded CSV file.', 'mw-order-import-export-sync-for-woocommerce'));
+			return new \WP_Error('mw_wie_coupon_header_error', __('Unable to read the uploaded CSV file.', 'mw-storesync-import-export'));
 		}
 
 		$headers = fgetcsv($handle);
 		fclose($handle);
 
 		if (empty($headers) || ! is_array($headers)) {
-			return new \WP_Error('mw_wie_coupon_header_error', __('Invalid CSV file. Please make sure the file contains a header row.', 'mw-order-import-export-sync-for-woocommerce'));
+			return new \WP_Error('mw_wie_coupon_header_error', __('Invalid CSV file. Please make sure the file contains a header row.', 'mw-storesync-import-export'));
 		}
 
 		$headers = array_map(array($this, 'normalize_header'), $headers);
@@ -35,7 +35,7 @@ class CouponProvisioner
 			return new \WP_Error(
 				'mw_wie_coupon_missing_columns',
 				sprintf(
-					__('Missing required coupon columns: %1$s.', 'mw-order-import-export-sync-for-woocommerce'),
+					__('Missing required coupon columns: %1$s.', 'mw-storesync-import-export'),
 					implode(', ', $missing)
 				)
 			);
@@ -47,7 +47,7 @@ class CouponProvisioner
 	public function import_rows(array $rows)
 	{
 		if (! class_exists('WC_Coupon')) {
-			return array('error' => __('WooCommerce is required for coupon import.', 'mw-order-import-export-sync-for-woocommerce'));
+			return array('error' => __('WooCommerce is required for coupon import.', 'mw-storesync-import-export'));
 		}
 
 		$result = array(
@@ -76,7 +76,7 @@ class CouponProvisioner
 			if (is_wp_error($response)) {
 				++$result['failed'];
 				$message = sprintf(
-					__('Row %1$d failed: %2$s', 'mw-order-import-export-sync-for-woocommerce'),
+					__('Row %1$d failed: %2$s', 'mw-storesync-import-export'),
 					$row_number,
 					$response->get_error_message()
 				);
@@ -87,7 +87,7 @@ class CouponProvisioner
 
 			++$result['success'];
 			$message = sprintf(
-				__('Row %1$d imported coupon #%2$d.', 'mw-order-import-export-sync-for-woocommerce'),
+				__('Row %1$d imported coupon #%2$d.', 'mw-storesync-import-export'),
 				$row_number,
 				absint($response)
 			);
@@ -97,7 +97,7 @@ class CouponProvisioner
 
 		if ($result['failed'] > 0) {
 			$result['error'] = sprintf(
-				__('Import completed with errors. %1$d coupon row(s) imported successfully and %2$d row(s) failed.', 'mw-order-import-export-sync-for-woocommerce'),
+				__('Import completed with errors. %1$d coupon row(s) imported successfully and %2$d row(s) failed.', 'mw-storesync-import-export'),
 				absint($result['success']),
 				absint($result['failed'])
 			);
@@ -117,33 +117,33 @@ class CouponProvisioner
 		$amount = isset($row['amount']) ? trim((string) $row['amount']) : '';
 
 		if ('' === $code) {
-			$errors[] = sprintf(__('Row %1$d: missing coupon code.', 'mw-order-import-export-sync-for-woocommerce'), $row_number);
+			$errors[] = sprintf(__('Row %1$d: missing coupon code.', 'mw-storesync-import-export'), $row_number);
 		}
 
 		if ('' === $discount_type) {
-			$errors[] = sprintf(__('Row %1$d: missing discount type.', 'mw-order-import-export-sync-for-woocommerce'), $row_number);
+			$errors[] = sprintf(__('Row %1$d: missing discount type.', 'mw-storesync-import-export'), $row_number);
 		} else {
 			$valid_types = array('fixed_cart', 'fixed_product', 'percent', 'free_shipping');
 			if (! in_array($discount_type, $valid_types, true)) {
-				$errors[] = sprintf(__('Row %1$d: invalid discount type. Allowed values are fixed_cart, fixed_product, percent, free_shipping.', 'mw-order-import-export-sync-for-woocommerce'), $row_number);
+				$errors[] = sprintf(__('Row %1$d: invalid discount type. Allowed values are fixed_cart, fixed_product, percent, free_shipping.', 'mw-storesync-import-export'), $row_number);
 			}
 		}
 
 		if ('free_shipping' !== $discount_type && '' === $amount) {
-			$errors[] = sprintf(__('Row %1$d: missing amount for non-free shipping coupon.', 'mw-order-import-export-sync-for-woocommerce'), $row_number);
+			$errors[] = sprintf(__('Row %1$d: missing amount for non-free shipping coupon.', 'mw-storesync-import-export'), $row_number);
 		}
 
 		if ('' !== $amount && ! is_numeric($amount)) {
-			$errors[] = sprintf(__('Row %1$d: amount must be numeric.', 'mw-order-import-export-sync-for-woocommerce'), $row_number);
+			$errors[] = sprintf(__('Row %1$d: amount must be numeric.', 'mw-storesync-import-export'), $row_number);
 		}
 
 		if (isset($row['usage_limit']) && '' !== trim((string) $row['usage_limit']) && ! is_numeric(trim((string) $row['usage_limit']))) {
-			$errors[] = sprintf(__('Row %1$d: usage limit must be numeric.', 'mw-order-import-export-sync-for-woocommerce'), $row_number);
+			$errors[] = sprintf(__('Row %1$d: usage limit must be numeric.', 'mw-storesync-import-export'), $row_number);
 		}
 
 		if (isset($row['date_expires']) && '' !== trim((string) $row['date_expires'])) {
 			if (false === strtotime($row['date_expires'])) {
-				$errors[] = sprintf(__('Row %1$d: invalid expiry date format.', 'mw-order-import-export-sync-for-woocommerce'), $row_number);
+				$errors[] = sprintf(__('Row %1$d: invalid expiry date format.', 'mw-storesync-import-export'), $row_number);
 			}
 		}
 
@@ -173,7 +173,7 @@ class CouponProvisioner
 			));
 
 			if (! $post_id || is_wp_error($post_id)) {
-				return new \WP_Error('mw_wie_coupon_create_error', __('Unable to create coupon.', 'mw-order-import-export-sync-for-woocommerce'));
+				return new \WP_Error('mw_wie_coupon_create_error', __('Unable to create coupon.', 'mw-storesync-import-export'));
 			}
 
 			$coupon = new \WC_Coupon($post_id);
@@ -272,8 +272,8 @@ class CouponProvisioner
 	private function get_required_header_label($header)
 	{
 		$labels = array(
-			'code' => __('Coupon code', 'mw-order-import-export-sync-for-woocommerce'),
-			'discount_type' => __('Discount type', 'mw-order-import-export-sync-for-woocommerce'),
+			'code' => __('Coupon code', 'mw-storesync-import-export'),
+			'discount_type' => __('Discount type', 'mw-storesync-import-export'),
 		);
 
 		return isset($labels[$header]) ? $labels[$header] : $header;

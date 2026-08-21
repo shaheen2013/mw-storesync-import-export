@@ -8,7 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 class CouponFileWriter {
 	public function download_coupons_csv( array $columns, array $filters ) {
 		if ( ! class_exists( 'WC_Coupon' ) ) {
-			wp_die( esc_html__( 'WooCommerce is required for coupon export.', 'mw-order-import-export-sync-for-woocommerce' ) );
+			wp_die( esc_html__( 'WooCommerce is required for coupon export.', 'mw-storesync-import-export' ) );
 		}
 
 		$available_columns = CouponColumns::get_columns();

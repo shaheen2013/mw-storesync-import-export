@@ -8,10 +8,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 class ProductTagsColumns {
 	public static function get_columns() {
 		$columns = array(
-			'term_id'     => __( 'Tag ID', 'mw-order-import-export-sync-for-woocommerce' ),
-			'name'        => __( 'Name', 'mw-order-import-export-sync-for-woocommerce' ),
-			'slug'        => __( 'Slug', 'mw-order-import-export-sync-for-woocommerce' ),
-			'description' => __( 'Description', 'mw-order-import-export-sync-for-woocommerce' ),
+			'term_id'     => __( 'Tag ID', 'mw-storesync-import-export' ),
+			'name'        => __( 'Name', 'mw-storesync-import-export' ),
+			'slug'        => __( 'Slug', 'mw-storesync-import-export' ),
+			'description' => __( 'Description', 'mw-storesync-import-export' ),
 		);
 
 		return apply_filters( 'mw_wie_product_tags_columns', $columns );

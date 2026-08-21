@@ -32,7 +32,7 @@ class Plugin {
 
 	public function add_action_links( $links ) {
 		$plugin_links = array(
-			'<a href="' . esc_url( admin_url( 'admin.php?page=mw-order-import-export-sync' ) ) . '">' . esc_html__( 'Import / Export', 'mw-order-import-export-sync-for-woocommerce' ) . '</a>',
+			'<a href="' . esc_url( admin_url( 'admin.php?page=mw-storesync-import-export' ) ) . '">' . esc_html__( 'Import / Export', 'mw-storesync-import-export' ) . '</a>',
 		);
 
 		return array_merge( $plugin_links, $links );
@@ -43,7 +43,7 @@ class Plugin {
 			return;
 		}
 
-		$message = esc_html__( 'MW Order Import Export & Sync for WooCommerce requires WooCommerce to be active.', 'mw-order-import-export-sync-for-woocommerce' );
+		$message = esc_html__( 'StoreSync Import Export for WooCommerce requires WooCommerce to be active.', 'mw-storesync-import-export' );
 
 		echo wp_kses(
 			'<div class="notice notice-error"><p>' . $message . '</p></div>',

@@ -1,8 +1,8 @@
-=== MW Order Import Export & Sync for WooCommerce ===
+=== StoreSync Import Export for WooCommerce ===
 Contributors: mediusware
 Tags: woocommerce, orders, import, export, csv, hpos
 Requires at least: 6.0
-Tested up to: 6.8
+Tested up to: 6.9
 Requires PHP: 7.4
 Stable tag: 1.1.4
 License: GPLv2 or later
@@ -12,7 +12,7 @@ Import and export WooCommerce orders using CSV files and HPOS-compatible WooComm
 
 == Description ==
 
-MW Order Import Export & Sync for WooCommerce provides an admin screen for exporting WooCommerce orders to CSV and importing mapped CSV files back into WooCommerce.
+StoreSync Import Export for WooCommerce provides an admin screen for exporting WooCommerce orders to CSV and importing mapped CSV files back into WooCommerce.
 
 Current features:
 

@@ -11,7 +11,7 @@ class FileWriter
 	public function download_orders_csv(array $columns, array $filters)
 	{
 		if (! function_exists('wc_get_orders')) {
-			wp_die(esc_html__('WooCommerce is required for order export.', 'mw-order-import-export-sync-for-woocommerce'));
+			wp_die(esc_html__('WooCommerce is required for order export.', 'mw-storesync-import-export'));
 		}
 
 		$available_columns = OrderColumns::get_columns();
@@ -34,20 +34,21 @@ class FileWriter
 		nocache_headers();
 		header('Content-Type: text/csv; charset=UTF-8');
 		header('Content-Disposition: attachment; filename="' . $file_name . '"');
+		header('Pragma: no-cache');
+		header('Expires: 0');
 
-		$custom_names = isset($filters['column_names']) ? $filters['column_names'] : array();
-		$headers      = $this->get_csv_headers($columns, $custom_names);
+		$headers = array();
+		foreach ($columns as $column_key) {
+			$headers[] = isset($filters['column_mappings'][$column_key]) && '' !== trim($filters['column_mappings'][$column_key])
+				? $filters['column_mappings'][$column_key]
+				: ($available_columns[$column_key] ?? $column_key);
+		}
 
 		$output         = fopen('php://output', 'w');
 		$headers_written = false;
 
 		$exported = 0;
 		$matched  = false;
-
-		// DEBUG: log incoming status filters to help diagnose mismatched exports.
-		if (defined('WP_DEBUG') && WP_DEBUG) {
-			error_log('[mw-wie] export filters: ' . wp_json_encode(array('status' => $filters['status'] ?? null)));
-		}
 
 		if (! empty($headers)) {
 			fputcsv($output, CsvValueSanitizer::sanitize_row($headers), $delimiter);
