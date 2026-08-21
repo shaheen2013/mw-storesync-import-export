@@ -17,7 +17,6 @@
  *
  * @package MW\WooImportExport
  */
-
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
